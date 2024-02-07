@@ -8,6 +8,8 @@ window.addEventListener('resize', resizeCanvas, false);
 function startGame() {
     myGameArea.start();
     resizeCanvas();
+    loadAndDrawImage("Toilet.png");
+
 }
 
 var myGameArea = {
@@ -32,5 +34,15 @@ function resizeCanvas() {
     myGameArea.canvas.height = window.innerHeight;
 
     myGameArea.fillBackground(); // refill background after resizing
+    // NOTES: If we have images or other elements drawn, consider redrawing them here...
 }
 
+// Loading and draw images
+function loadAndDrawImage(url) {
+    var img = new Image();
+    img.onload = function() {
+        // Draw the image onto the canvas once it's loaded
+        myGameArea.context.drawImage(img, 50, 50, 800, 800); // adjust its coodi and size accordingly
+    };
+    img.src = url; // Set source path
+}
