@@ -4,12 +4,15 @@ document.addEventListener('DOMContentLoaded', startGame);
 // Zesh: Ensures the canvas resizes when the window resizes
 window.addEventListener('resize', resizeCanvas, false);
 
+
+var img = new Image();
+var imageToilet = "Toilet.png"; // Store image here so we can use it in multiple functions
+
+
 // Main game function
 function startGame() {
     myGameArea.start();
     resizeCanvas();
-    loadAndDrawImage("Toilet.png");
-
 }
 
 var myGameArea = {
@@ -26,23 +29,43 @@ var myGameArea = {
 }
 
 // Adjusts canvas size according to windows size
-// REMINDER: changing the canvas size can affect the
-// positioning and scaling of our drawn elements,
-// so this function needs to be adjusted in the future
+// Now by calling loadAndDrawImage(url) after fillBackground()
+// we are able to redraw images after resizing and keep maintaining their sizes
 function resizeCanvas() {
     myGameArea.canvas.width = window.innerWidth;
     myGameArea.canvas.height = window.innerHeight;
 
     myGameArea.fillBackground(); // refill background after resizing
-    // NOTES: If we have images or other elements drawn, consider redrawing them here...
+    loadAndDrawImage(imageToilet); // redraw the image at its original size
 }
 
-// Loading and draw images
+
+// Loading and drawing images
 function loadAndDrawImage(url) {
-    var img = new Image();
     img.onload = function() {
-        // Draw the image onto the canvas once it's loaded
-        myGameArea.context.drawImage(img, 50, 50, 800, 800); // adjust its coodi and size accordingly
+        drawScaledImage(img);
+        img.onload = null; // clear onload to prevent redraw issues on resize
     };
-    img.src = url; // Set source path
+    if (!img.src.endsWith(url)) {
+        img.src = url; // load the image if different
+    } else {
+        // if already loaded, just draw it using the method
+        drawScaledImage(img);
+    }
+}
+
+// Refactoring for drawing scaled images
+// to fit in the canvas
+function drawScaledImage(img) {
+    // calculate the scale factor to fit the image within the canvas while maintaining aspect ratio
+    var scale = Math.min(myGameArea.canvas.width / img.width, myGameArea.canvas.height / img.height);
+    var x = (myGameArea.canvas.width / 2) - (img.width / 2) * scale; // center the image on the canvas
+    var y = (myGameArea.canvas.height / 2) - (img.height / 2) * scale;
+
+    // clear the canvas and refill the background
+    myGameArea.context.clearRect(0, 0, myGameArea.canvas.width, myGameArea.canvas.height);
+    myGameArea.fillBackground();
+
+    // draw the image with scaling
+    myGameArea.context.drawImage(img, x, y, img.width * scale, img.height * scale);
 }
