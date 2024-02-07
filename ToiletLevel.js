@@ -1,6 +1,8 @@
 // Zesh: Ensures the startGame function is called once the document is fully loaded
 // Zesh: This is an event listener. It's powerful and you can implement many things using it
 document.addEventListener('DOMContentLoaded', startGame);
+// Zesh: Ensures the canvas resizes when the window resizes
+window.addEventListener('resize', resizeCanvas, false);
 
 // Main game function
 function startGame() {
