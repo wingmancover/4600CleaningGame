@@ -55,8 +55,11 @@ function attachMouseEvents(konvaImage) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    // testing image
-    createInteractiveImage('Toilet.png', stage.width() / 2, stage.height() / 2, 1024, 1024);
+    // testing images
+    createInteractiveImage('Tools_Sprites/Tool_ToiletSprite.png', stage.width() / 1.5, stage.height() / 1.5, 256, 256);
+    createInteractiveImage('Chemicals_Sprites/Chemical_Hydrogen_Peroxide_Sprite.png', stage.width() / 2, stage.height() / 2, 256, 256);
+    createInteractiveImage('Chemicals_Sprites/Chemical_Drano_Sprite.png', stage.width() / 3, stage.height() / 3, 256, 256);
+
     // add more images as needed
 });
 
