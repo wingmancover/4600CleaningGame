@@ -2,7 +2,7 @@
 // MouseControls.js
 // This is for setting mouse events and controls to objects and images
 
-function createInteractiveImage(src, x, y, width, height) {
+function createInteractiveImage(src, x, y, width, height, trackable) {
     var imageObj = new Image();
     imageObj.onload = function() {
         var konvaImage = new Konva.Image({
@@ -13,7 +13,7 @@ function createInteractiveImage(src, x, y, width, height) {
             height: height,
             offsetX: width / 2,
             offsetY: height / 2,
-            draggable: true,
+            draggable: trackable,
         });
 
         // attach mouse events to the konvaImage object
@@ -56,9 +56,9 @@ function attachMouseEvents(konvaImage) {
 
 document.addEventListener('DOMContentLoaded', function() {
     // testing images
-    createInteractiveImage('Tools_Sprites/Tool_ToiletSprite.png', stage.width() / 1.5, stage.height() / 1.5, 256, 256);
-    createInteractiveImage('Chemicals_Sprites/Chemical_Hydrogen_Peroxide_Sprite.png', stage.width() / 2, stage.height() / 2, 256, 256);
-    createInteractiveImage('Chemicals_Sprites/Chemical_Drano_Sprite.png', stage.width() / 3, stage.height() / 3, 256, 256);
+    createInteractiveImage('Tools_Sprites/Tool_ToiletSprite.png', stage.width() / 1.5, stage.height() / 1.5, 256, 256, false);
+    createInteractiveImage('Chemicals_Sprites/Chemical_Hydrogen_Peroxide_Sprite.png', stage.width() / 2, stage.height() / 2, 256, 256, true);
+    createInteractiveImage('Chemicals_Sprites/Chemical_Drano_Sprite.png', stage.width() / 3, stage.height() / 3, 256, 256, true);
 
     // add more images as needed
 });
