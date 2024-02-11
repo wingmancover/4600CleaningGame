@@ -56,7 +56,7 @@ function attachMouseEvents(konvaImage) {
 
 document.addEventListener('DOMContentLoaded', function() {
     // testing images
-    createInteractiveImage('Tools_Sprites/Tool_ToiletSprite.png', stage.width() / 1.5, stage.height() / 1.5, 256, 256, false);
+    createInteractiveImage('Tools_Sprites/ToiletUpscaled.png', stage.width() / 1.5, stage.height() / 1.5, 256, 256, true);
     createInteractiveImage('Chemicals_Sprites/Chemical_Hydrogen_Peroxide_Sprite.png', stage.width() / 2, stage.height() / 2, 256, 256, true);
     createInteractiveImage('Chemicals_Sprites/Chemical_Drano_Sprite.png', stage.width() / 3, stage.height() / 3, 256, 256, true);
 
