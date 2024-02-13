@@ -1,7 +1,7 @@
 // SceneManager.js
 // This is for scene transition
 
-// SceneManager.js
+// RIGHT NOW IT IS INCOMPLETE, NEEDS REVISION
 var SceneManager = (function() {
     function transitionToScene(sceneName) {
         console.log("Transitioning to scene:", sceneName);
