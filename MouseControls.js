@@ -2,7 +2,7 @@
 // MouseControls.js
 // This is for setting mouse events and controls to objects and images
 
-function createInteractiveImage(src, x, y, width, height, trackable, canRotate, canScale) {
+function createInteractiveImage(src, x, y, width, height, canDrag, canRotate, canScale) {
     var imageObj = new Image();
     imageObj.onload = function() {
         var konvaImage = new Konva.Image({
@@ -13,7 +13,7 @@ function createInteractiveImage(src, x, y, width, height, trackable, canRotate, 
             height: height,
             offsetX: width / 2,
             offsetY: height / 2,
-            draggable: trackable,
+            draggable: canDrag,
         });
 
         // right-click to rotate 45 degree
