@@ -2,7 +2,7 @@
 // MouseControls.js
 // This is for setting mouse events and controls to objects and images
 
-function createInteractiveImage(src, x, y, width, height, canDrag, canRotate, canScale) {
+function createInteractiveImage(name, src, x, y, width, height, canDrag, canRotate, canScale) {
     var imageObj = new Image();
     imageObj.onload = function() {
         var konvaImage = new Konva.Image({
@@ -47,18 +47,19 @@ function createInteractiveImage(src, x, y, width, height, canDrag, canRotate, ca
             });
         }
 
+        ObjectTracker.add(name, konvaImage);  // Store the image in ObjectTracker.js with a name
+
         imageLayer.add(konvaImage);
         imageLayer.draw();
     };
     imageObj.src = src;
 }
 
+// Places for loading images
 document.addEventListener('DOMContentLoaded', function() {
-    // testing images
-    createInteractiveImage('Tools_Sprites/ToiletUpscaled.png', stage.width() / 1.5, stage.height() / 1.5, 512, 512, true, false,false);
-    createInteractiveImage('Chemicals_Sprites/Chemical_Hydrogen_Peroxide_Sprite.png', stage.width() / 2, stage.height() / 2, 256, 256, true, true,true);
-    createInteractiveImage('Chemicals_Sprites/Chemical_Drano_Sprite.png', stage.width() / 3, stage.height() / 3, 256, 256, true, true,true);
-
-    // add more images as needed
+    // Pre-created Images for setting up the Start Scene
+    createInteractiveImage('toiletImage', 'Tools_Sprites/ToiletUpscaled.png', stage.width() / 1.5, stage.height() / 1.5, 512, 512, false, false,false);
+    createInteractiveImage('hydrogen_PeroxideImage', 'Chemicals_Sprites/Chemical_Hydrogen_Peroxide_Sprite.png', stage.width() / 2, stage.height() / 2, 256, 256, true, true,true);
+    createInteractiveImage('dranoImage', 'Chemicals_Sprites/Chemical_Drano_Sprite.png', stage.width() / 3, stage.height() / 3, 256, 256, true, true,true);
 });
 
