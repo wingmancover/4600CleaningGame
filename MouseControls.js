@@ -1,6 +1,7 @@
 // Zesh: We use Konva.js to implement our mouse in-game controls
 // MouseControls.js
 // This is for setting mouse events and controls to objects and images
+// Also for adding objects
 
 function createInteractiveImage(name, src, x, y, width, height, canDrag, canRotate, canScale) {
     var imageObj = new Image();
@@ -55,11 +56,16 @@ function createInteractiveImage(name, src, x, y, width, height, canDrag, canRota
     imageObj.src = src;
 }
 
+
 // Places for loading images
 document.addEventListener('DOMContentLoaded', function() {
     // Pre-created Images for setting up the Start Scene
-    createInteractiveImage('toiletImage', 'Tools_Sprites/ToiletUpscaled.png', stage.width() / 1.5, stage.height() / 1.5, 512, 512, false, false,false);
-    createInteractiveImage('hydrogen_PeroxideImage', 'Chemicals_Sprites/Chemical_Hydrogen_Peroxide_Sprite.png', stage.width() / 2, stage.height() / 2, 256, 256, true, true,true);
-    createInteractiveImage('dranoImage', 'Chemicals_Sprites/Chemical_Drano_Sprite.png', stage.width() / 3, stage.height() / 3, 256, 256, true, true,true);
+    createInteractiveImage('toiletImage', 'Tools_Sprites/ToiletUpscaled.png',
+        stage.width() / 1.5, stage.height() / 1.5, 512, 512, false, false,false);
+    createInteractiveImage('hydrogen_PeroxideImage', 'Chemicals_Sprites/Chemical_Hydrogen_Peroxide_Sprite.png',
+        stage.width() / 2, stage.height() / 2, 256, 256, true, true,true);
+    createInteractiveImage('dranoImage', 'Chemicals_Sprites/Chemical_Drano_Sprite.png',
+        stage.width() / 3, stage.height() / 3, 256, 256, true, true,true);
+
 });
 
