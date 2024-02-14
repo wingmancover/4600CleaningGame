@@ -1,36 +1,25 @@
 // SceneManager.js
 // This is for scene transition
 
-// RIGHT NOW IT IS INCOMPLETE, NEEDS REVISION
 var SceneManager = (function() {
     function transitionToScene(sceneName) {
         console.log("Transitioning to scene:", sceneName);
 
-        // Clear the current layer or use different layers for different scenes
-       // imageLayer.removeChildren();
+        // Clear the layer for a fresh start
+        imageLayer.removeChildren();
 
-        // Based on the scene, add the required images
-        if (sceneName === 'Scene1') {
-            var image1 = ObjectTracker.get('toiletImage');
-            if (image1) {
-                imageLayer.add(image1);
-            }
-        } else if (sceneName === 'Scene2') {
-            var image2 = ObjectTracker.get('cleanerImage');
-            if (image2) {
-                imageLayer.add(image2);
-            }
-            // ... etc.
-        }
+        // Get all images for the current scene from ObjectTracker
+        // This also includes global objects
+        var sceneObjects = ObjectTracker.getByScene(sceneName);
+        sceneObjects.forEach(obj => imageLayer.add(obj)); // Add each object to the layer
 
-        // Draw the layer after adding images
+        // Redraw the layer to display the current scene's objects
         imageLayer.draw();
     }
 
     return {
-        transitionToScene: transitionToScene
+        transitionToScene
     };
 })();
-
 
 
