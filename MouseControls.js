@@ -60,7 +60,7 @@ function createInteractiveImage(name, src, x, y, width, height, canDrag, canRota
 // Places for loading images
 document.addEventListener('DOMContentLoaded', function() {
     // Pre-created Images for setting up the Start Scene
-    createInteractiveImage('toiletImage', 'Tools_Sprites/ToiletUpscaled.png',
+    createInteractiveImage('toiletImage', 'Toilet_Assets/Toilet.png',
         stage.width() / 1.5, stage.height() / 1.5, 512, 512, false, false,false);
     createInteractiveImage('hydrogen_PeroxideImage', 'Chemicals_Sprites/Chemical_Hydrogen_Peroxide_Sprite.png',
         stage.width() / 2, stage.height() / 2, 256, 256, true, true,true);
