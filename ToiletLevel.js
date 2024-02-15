@@ -55,10 +55,10 @@ document.addEventListener('DOMContentLoaded', function() {
     dynamicText = new Konva.Text({
         x: stage.width()/1.4,
         y: stage.height()/10,
-        text: "Click to interact objects!\n\n" +
+        text: "Click to interact objects!!!\n\n" +
             "Let's start maintaining our Toilet Tank!" +
             "\nFirst, let's close the valve to turn off water", // Initial content of the text object
-        fontSize: 20,
+        fontSize: 25,
         fontFamily: 'Arial',
         fill: 'black'
     });
@@ -78,14 +78,68 @@ function objectClicked(konvaImage) {
     console.log(`Object clicked: ${konvaImage.name()}`);
 
     // Perform actions based on the clicked object's name
-    if (konvaImage.name() === 'toiletImage') {
-        console.log('The toilet image was clicked.');
-        // Transition to a new scene or perform other actions
-        SceneManager.transitionToScene('Scene2');
-
-        dynamicText.text('Click detected on object!');
+    if (konvaImage.name() === 'toiletValve') {
+        rotateObject(konvaImage, -3);
+        dynamicText.text("Great!\nNow let's use handle to drain the tank");
         backgroundLayer.draw();
     }
 
-    // Handle other objects as needed
+    if (konvaImage.name() === 'toiletHandle') {
+        rotateObject(konvaImage, -3);
+        dynamicText.text("Great!\nNow let's remove the Toilet Tank Lid\nto check the tank interior");
+        backgroundLayer.draw();
+    }
+
+    if (konvaImage.name() === 'toiletTankLid') {
+        dynamicText.text("Great!\nNow let's disconnect the Old Flapper\ninside the tank");
+        backgroundLayer.draw();
+
+        SceneManager.transitionToScene('Scene2');
+    }
+
+    if (konvaImage.name() === 'toiletOldFlapper2') {
+        dynamicText.text("Awesome!\nNow let's install the New Flapper\nIt's at the inventory bar on your left area");
+        backgroundLayer.draw();
+
+        SceneManager.transitionToScene('Scene3');
+
+    }
+
+    if (konvaImage.name() === 'toiletNewFlapper') {
+
+        dynamicText.text("Awesome! It's installed!\n" +
+            "Now please click on the Tank Lid to\nclose the lid on the tank");
+        backgroundLayer.draw();
+
+        SceneManager.transitionToScene('Scene4');
+
+    }
+
+    if (konvaImage.name() === 'toiletTankLid2') {
+
+        dynamicText.text("Great Job!\n" +
+            "Let's do some final checks:\n" +
+            "Open the Valve again");
+        backgroundLayer.draw();
+
+        SceneManager.transitionToScene('Scene5');
+
+    }
+
+    if (konvaImage.name() === 'toiletValve2') {
+        rotateObject(konvaImage, -3);
+        dynamicText.text("Flush the toilet\nto check it is working");
+        backgroundLayer.draw();
+    }
+
+    if (konvaImage.name() === 'toiletHandle2') {
+        rotateObject(konvaImage, -3);
+        dynamicText.text("Congratulations!\nYou've successfully learning" +
+            "\nthe toilet tank maintenance!");
+        backgroundLayer.draw();
+
+        SceneManager.transitionToScene('finalScene');
+    }
+    // Handle
+    // other objects as needed
 }
