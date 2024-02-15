@@ -69,20 +69,3 @@ function scaleObject(konvaImage, event) {
     konvaImage.position(newPos);
     imageLayer.draw();
 }
-
-
-//Temp dev controls to return pos for cursor to speed up scene building
-//report the mouse position on click
-document.addEventListener("click", function (evt) {
-    var mousePos = getMousePos(canvas, evt);
-    alert(mousePos.x + ',' + mousePos.y);
-}, false);
-
-//Get Mouse Position
-function getMousePos(stage, evt) {
-    var rect = stage.getBoundingClientRect();
-    return {
-        x: evt.clientX - rect.left,
-        y: evt.clientY - rect.top
-    };
-}

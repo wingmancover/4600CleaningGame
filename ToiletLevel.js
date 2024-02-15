@@ -44,6 +44,11 @@ document.addEventListener('DOMContentLoaded', function() {
         imageLayer.draw();
     });
 
+    stage.on('click', function(evt) {
+        var mousePos = stage.getPointerPosition();
+        console.log('Mouse position: x=' + mousePos.x + ', y=' + mousePos.y);
+        //alert('Mouse position: x=' + mousePos.x + ', y=' + mousePos.y);
+    });
     // Our future level design logic can go here
 });
 
