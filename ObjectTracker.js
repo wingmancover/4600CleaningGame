@@ -48,7 +48,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         //Toilet Assets
         ObjectTracker.createAndTrackImage('toiletImage', 'Toilet_Assets/Toilet.png',
-            stage.width() / 1.5, stage.height() / 1.5, 512, 512, true, false,false, 'global', SceneManager.objectClicked),
+            stage.width() / 1.5, stage.height() / 1.5, 512, 512,
+            true, false,false, 'global', objectClicked),
 
         ObjectTracker.createAndTrackImage('toiletBase', 'Toilet_Assets/Toilet_Base.png',
             1, 1, 512, 512, false, false, false, 'Scene1'),

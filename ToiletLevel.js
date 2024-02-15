@@ -3,7 +3,7 @@
 // This is for level and scene(canvas) design
 
 
-var stage, backgroundLayer, imageLayer;
+var stage, backgroundLayer, imageLayer, dynamicText;
 
 document.addEventListener('DOMContentLoaded', function() {
     // initialize stage
@@ -44,11 +44,42 @@ document.addEventListener('DOMContentLoaded', function() {
         imageLayer.draw();
     });
 
+    // Check mouse position on every click
     stage.on('click', function(evt) {
         var mousePos = stage.getPointerPosition();
         console.log('Mouse position: x=' + mousePos.x + ', y=' + mousePos.y);
         //alert('Mouse position: x=' + mousePos.x + ', y=' + mousePos.y);
     });
+
+    dynamicText = new Konva.Text({
+        x: 50, // Starting x position
+        y: 50, // Starting y position
+        text: 'Initial Textfffffffffffffffffffffff', // Initial content of the text object
+        fontSize: 24,
+        fontFamily: 'Arial',
+        fill: 'black'
+    });
+
+    // Add the text object to a layer and draw it
+    backgroundLayer.add(dynamicText);
+    backgroundLayer.draw();
+
     // Our future level design logic can go here
 });
 
+// Function for handle the clicked object and transitions to a new scene
+function objectClicked(konvaImage) {
+    console.log(`Object clicked: ${konvaImage.name()}`);
+
+    // Perform actions based on the clicked object's name
+    if (konvaImage.name() === 'toiletImage') {
+        console.log('The toilet image was clicked.');
+        // Transition to a new scene or perform other actions
+        SceneManager.transitionToScene('Scene2');
+
+        dynamicText.text('Click detected on object!');
+        backgroundLayer.draw();
+    }
+
+    // Handle other objects as needed
+}

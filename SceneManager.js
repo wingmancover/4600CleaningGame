@@ -17,24 +17,7 @@ var SceneManager = (function() {
         imageLayer.draw();
     }
 
-    // Function for handle the clicked object and transitions to a new scene
-    function objectClicked(konvaImage) {
-        console.log(`Object clicked: ${name}`);
-
-        // Perform actions based on the clicked object's name
-        if (konvaImage.name() === 'toiletImage') {
-            console.log('The toilet image was clicked.');
-            // Transition to a new scene or perform other actions
-            SceneManager.transitionToScene('Scene2');
-        }
-
-        // Handle other objects as needed
-    }
-
     return {
         transitionToScene,
-        objectClicked
     };
 })();
-
-
