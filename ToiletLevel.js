@@ -53,10 +53,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // A dynamicText for game instructions
     dynamicText = new Konva.Text({
-        x: 50, // Starting x position
-        y: 50, // Starting y position
-        text: 'Initial Textfffffffffffffffffffffff', // Initial content of the text object
-        fontSize: 24,
+        x: stage.width()/1.4,
+        y: stage.height()/10,
+        text: "Click to interact objects!\n\n" +
+            "Let's start maintaining our Toilet Tank!" +
+            "\nFirst, let's close the valve to turn off water", // Initial content of the text object
+        fontSize: 20,
         fontFamily: 'Arial',
         fill: 'black'
     });
