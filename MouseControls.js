@@ -21,8 +21,7 @@ function createInteractiveImage(name, src, x, y, width, height, canDrag, canRota
             if (canRotate) {
                 konvaImage.on('contextmenu', function (event) {
                     event.evt.preventDefault();
-                    konvaImage.rotation(konvaImage.rotation() + 45);
-                    imageLayer.batchDraw();
+                    rotateObject(konvaImage, 45); // Rotate by 45 degrees
                 });
             }
 
@@ -30,21 +29,7 @@ function createInteractiveImage(name, src, x, y, width, height, canDrag, canRota
             if (canScale) {
                 konvaImage.on('wheel', function (event) {
                     event.evt.preventDefault();
-                    var scaleBy = 1.1;
-                    var oldScale = konvaImage.scaleX();
-                    var pointer = stage.getPointerPosition();
-                    var mousePointTo = {
-                        x: (pointer.x - konvaImage.x()) / oldScale,
-                        y: (pointer.y - konvaImage.y()) / oldScale,
-                    };
-                    var newScale = event.evt.deltaY > 0 ? oldScale / scaleBy : oldScale * scaleBy;
-                    konvaImage.scale({x: newScale, y: newScale});
-                    var newPos = {
-                        x: pointer.x - mousePointTo.x * newScale,
-                        y: pointer.y - mousePointTo.y * newScale,
-                    };
-                    konvaImage.position(newPos);
-                    imageLayer.draw();
+                    scaleObject(konvaImage, event); // Scale object
                 });
             }
             // Store the image in ObjectTracker.js with a name and its belonged scene
@@ -59,6 +44,32 @@ function createInteractiveImage(name, src, x, y, width, height, canDrag, canRota
         imageObj.src = src;
     });
 }
+
+// Function for rotation
+function rotateObject(konvaImage, rotationDegrees) {
+    konvaImage.rotation(konvaImage.rotation() + rotationDegrees);
+    imageLayer.batchDraw();
+}
+
+// Function for scaling
+function scaleObject(konvaImage, event) {
+    var scaleBy = 1.1;
+    var oldScale = konvaImage.scaleX();
+    var pointer = stage.getPointerPosition();
+    var mousePointTo = {
+        x: (pointer.x - konvaImage.x()) / oldScale,
+        y: (pointer.y - konvaImage.y()) / oldScale,
+    };
+    var newScale = event.evt.deltaY > 0 ? oldScale / scaleBy : oldScale * scaleBy;
+    konvaImage.scale({x: newScale, y: newScale});
+    var newPos = {
+        x: pointer.x - mousePointTo.x * newScale,
+        y: pointer.y - mousePointTo.y * newScale,
+    };
+    konvaImage.position(newPos);
+    imageLayer.draw();
+}
+
 
 //Temp dev controls to return pos for cursor to speed up scene building
 //report the mouse position on click
