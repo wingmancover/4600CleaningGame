@@ -2,7 +2,7 @@
 // MouseControls.js
 // This is for setting mouse events and controls to objects and images
 
-function createInteractiveImage(name, src, x, y, width, height, canDrag, canRotate, canScale, scene) {
+function createInteractiveImage(name, src, x, y, width, height, canDrag, canRotate, canScale, scene, onClick) {
     return new Promise((resolve, reject) => {
         var imageObj = new Image();
         imageObj.onload = function () {
@@ -15,14 +15,14 @@ function createInteractiveImage(name, src, x, y, width, height, canDrag, canRota
                 offsetX: width / 2,
                 offsetY: height / 2,
                 draggable: canDrag,
+                name: name,
             });
 
             // right-click to rotate 45 degree
             if (canRotate) {
                 konvaImage.on('contextmenu', function (event) {
                     event.evt.preventDefault();
-                    konvaImage.rotation(konvaImage.rotation() + 45);
-                    imageLayer.batchDraw();
+                    rotateObject(konvaImage, 45); // Rotate by 45 degrees
                 });
             }
 
@@ -30,23 +30,14 @@ function createInteractiveImage(name, src, x, y, width, height, canDrag, canRota
             if (canScale) {
                 konvaImage.on('wheel', function (event) {
                     event.evt.preventDefault();
-                    var scaleBy = 1.1;
-                    var oldScale = konvaImage.scaleX();
-                    var pointer = stage.getPointerPosition();
-                    var mousePointTo = {
-                        x: (pointer.x - konvaImage.x()) / oldScale,
-                        y: (pointer.y - konvaImage.y()) / oldScale,
-                    };
-                    var newScale = event.evt.deltaY > 0 ? oldScale / scaleBy : oldScale * scaleBy;
-                    konvaImage.scale({x: newScale, y: newScale});
-                    var newPos = {
-                        x: pointer.x - mousePointTo.x * newScale,
-                        y: pointer.y - mousePointTo.y * newScale,
-                    };
-                    konvaImage.position(newPos);
-                    imageLayer.draw();
+                    scaleObject(konvaImage, event); // Scale object
                 });
             }
+
+            if (onClick) {
+                konvaImage.on('click', () => onClick(konvaImage, name));
+            }
+
             // Store the image in ObjectTracker.js with a name and its belonged scene
             ObjectTracker.add(name, konvaImage, scene);
 
@@ -60,18 +51,37 @@ function createInteractiveImage(name, src, x, y, width, height, canDrag, canRota
     });
 }
 
-//Temp dev controls to return pos for cursor to speed up scene building
-//report the mouse position on click
-document.addEventListener("click", function (evt) {
-    var mousePos = getMousePos(canvas, evt);
-    alert(mousePos.x + ',' + mousePos.y);
-}, false);
+// Function for rotation
+function rotateObject(konvaImage, rotationDegrees) {
+    konvaImage.rotation(konvaImage.rotation() + rotationDegrees);
+    imageLayer.batchDraw();
+}
 
-//Get Mouse Position
-function getMousePos(stage, evt) {
-    var rect = stage.getBoundingClientRect();
-    return {
-        x: evt.clientX - rect.left,
-        y: evt.clientY - rect.top
+// Function for scaling
+function scaleObject(konvaImage, event) {
+    var scaleBy = 1.1;
+    var oldScale = konvaImage.scaleX();
+    var pointer = stage.getPointerPosition();
+    var mousePointTo = {
+        x: (pointer.x - konvaImage.x()) / oldScale,
+        y: (pointer.y - konvaImage.y()) / oldScale,
     };
+    var newScale = event.evt.deltaY > 0 ? oldScale / scaleBy : oldScale * scaleBy;
+    konvaImage.scale({x: newScale, y: newScale});
+    var newPos = {
+        x: pointer.x - mousePointTo.x * newScale,
+        y: pointer.y - mousePointTo.y * newScale,
+    };
+    konvaImage.position(newPos);
+    imageLayer.draw();
+}
+
+// Function for adjusting hit area
+function setHitArea(konvaImage, hitX, hitY, hitWidth, hitHeight) {
+    konvaImage.hitFunc(function(context) {
+        context.beginPath();
+        context.rect(hitX, hitY, hitWidth, hitHeight);
+        context.closePath();
+        context.fillStrokeShape(this);
+    });
 }
