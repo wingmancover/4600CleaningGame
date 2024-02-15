@@ -47,7 +47,6 @@ function createInteractiveImage(name, src, x, y, width, height, canDrag, canRota
                     imageLayer.draw();
                 });
             }
-
             // Store the image in ObjectTracker.js with a name and its belonged scene
             ObjectTracker.add(name, konvaImage, scene);
 
@@ -59,4 +58,20 @@ function createInteractiveImage(name, src, x, y, width, height, canDrag, canRota
         imageObj.onerror = reject;
         imageObj.src = src;
     });
+}
+
+//Temp dev controls to return pos for cursor to speed up scene building
+//report the mouse position on click
+document.addEventListener("click", function (evt) {
+    var mousePos = getMousePos(canvas, evt);
+    alert(mousePos.x + ',' + mousePos.y);
+}, false);
+
+//Get Mouse Position
+function getMousePos(stage, evt) {
+    var rect = stage.getBoundingClientRect();
+    return {
+        x: evt.clientX - rect.left,
+        y: evt.clientY - rect.top
+    };
 }
