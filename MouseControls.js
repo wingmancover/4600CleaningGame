@@ -75,3 +75,13 @@ function scaleObject(konvaImage, event) {
     konvaImage.position(newPos);
     imageLayer.draw();
 }
+
+// Function for adjusting hit area
+function setHitArea(konvaImage, hitX, hitY, hitWidth, hitHeight) {
+    konvaImage.hitFunc(function(context) {
+        context.beginPath();
+        context.rect(hitX, hitY, hitWidth, hitHeight);
+        context.closePath();
+        context.fillStrokeShape(this);
+    });
+}
