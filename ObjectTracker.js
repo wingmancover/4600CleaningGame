@@ -6,8 +6,8 @@ var ObjectTracker = (function() {
     var objects = {};
     var globalObjects = []; // Array to keep track of objects visible in all scenes
 
-    function createAndTrackImage(name, src, x, y, width, height, canDrag, canRotate, canScale, scene) {
-        return createInteractiveImage(name, src, x, y, width, height, canDrag, canRotate, canScale, scene).then(konvaObject => {
+    function createAndTrackImage(name, src, x, y, width, height, canDrag, canRotate, canScale, scene, onClick) {
+        return createInteractiveImage(name, src, x, y, width, height, canDrag, canRotate, canScale, scene, onClick).then(konvaObject => {
             add(name, konvaObject, scene); // Track the newly created object
         });
     }
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         //Toilet Assets
         ObjectTracker.createAndTrackImage('toiletImage', 'Toilet_Assets/Toilet.png',
-            stage.width() / 1.5, stage.height() / 1.5, 512, 512, true, false,false, 'global'),
+            stage.width() / 1.5, stage.height() / 1.5, 512, 512, true, false,false, 'global', SceneManager.objectClicked),
 
         ObjectTracker.createAndTrackImage('toiletBase', 'Toilet_Assets/Toilet_Base.png',
             1, 1, 512, 512, false, false, false, 'Scene1'),
@@ -56,11 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
         ObjectTracker.createAndTrackImage('toiletHandle', 'Toilet_Assets/Toilet_Handle.png',
             1, 1, 512, 512, false, false, false),
 
-        ObjectTracker.createAndTrackImage('hydrogen_PeroxideImage', 'Chemicals_Sprites/Chemical_Hydrogen_Peroxide_Sprite.png',
-            stage.width() / 2, stage.height() / 2, 256, 256, true, true,true, 'Scene1'),
 
-        ObjectTracker.createAndTrackImage('dranoImage', 'Chemicals_Sprites/Chemical_Drano_Sprite.png',
-            stage.width() / 3, stage.height() / 3, 256, 256, true, true,true, 'Scene2'),
 
         //UI Objects
         //Inventory
