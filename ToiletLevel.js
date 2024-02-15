@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
         //alert('Mouse position: x=' + mousePos.x + ', y=' + mousePos.y);
     });
 
+    // A dynamicText for game instructions
     dynamicText = new Konva.Text({
         x: 50, // Starting x position
         y: 50, // Starting y position
@@ -60,14 +61,17 @@ document.addEventListener('DOMContentLoaded', function() {
         fill: 'black'
     });
 
-    // Add the text object to a layer and draw it
+    // Add the text object to backgroundLayer and draw it,
+    // so the text will not be affected by imageLayer
     backgroundLayer.add(dynamicText);
     backgroundLayer.draw();
 
     // Our future level design logic can go here
 });
 
-// Function for handle the clicked object and transitions to a new scene
+
+// Function for handle the clicked object,
+// updating needed instruction text and transitions to a new scene
 function objectClicked(konvaImage) {
     console.log(`Object clicked: ${konvaImage.name()}`);
 
