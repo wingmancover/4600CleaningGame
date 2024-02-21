@@ -53,14 +53,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // A dynamicText for game instructions
     dynamicText = new Konva.Text({
-        x: stage.width()/1.4,
+        x: stage.width()/1.6,
         y: stage.height()/10,
         text: "Click to interact objects!!!\n\n" +
             "Let's start maintaining our Toilet Tank!" +
             "\nFirst, let's close the valve to turn off water", // Initial content of the text object
         fontSize: 25,
         fontFamily: 'Arial',
-        fill: 'black'
+        fill: 'white'
     });
 
     // Add the text object to backgroundLayer and draw it,
