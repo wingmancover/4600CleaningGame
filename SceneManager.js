@@ -13,16 +13,6 @@ var SceneManager = (function() {
         var sceneObjects = ObjectTracker.getByScene(sceneName);
         sceneObjects.forEach(obj => imageLayer.add(obj)); // Add each object to the layer
 
-        if(sceneName === 'Scene5'){
-            ObjectTracker.removeGlobalObject('toiletValve');
-            ObjectTracker.removeGlobalObject('toiletHandle');
-        }
-
-        if(sceneName === 'finalScene'){
-            ObjectTracker.removeGlobalObject('toiletValve');
-            ObjectTracker.removeGlobalObject('toiletHandle');
-        }
-
         // Redraw the layer to display the current scene's objects
         imageLayer.draw();
     }
