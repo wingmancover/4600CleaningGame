@@ -54,13 +54,25 @@ var ObjectTracker = (function() {
         }
     }
 
+    // New method to rotate an object by name
+    function rotateObjectByName(name, degrees) {
+        const konvaObject = getGlobal(name) || get(name); // Try to get the object, whether it's global or scene-specific
+        if (konvaObject) {
+            // Use the existing rotateObject function to rotate the found object
+            rotateObject(konvaObject, degrees);
+        } else {
+            console.error('Object not found:', name);
+        }
+    }
+
     return {
         add,
         get,
         getGlobal,
         getByScene,
         createAndTrackImage,
-        removeGlobalObject
+        removeGlobalObject,
+        rotateObjectByName
     };
 })();
 
@@ -83,6 +95,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         await ObjectTracker.createAndTrackImage('toiletValve', 'Toilet_Assets/Toilet_Valve.png',
             stage.width() / 2.05, stage.height() / 1.98, 512, 512, false, false, false, 'global', objectClicked);
         setHitArea(ObjectTracker.getGlobal('toiletValve'), 100, 250, 100, 100);
+        //ObjectTracker.rotateObjectByName('toiletValve', -3);
 
         await ObjectTracker.createAndTrackImage('toiletOldFlapper', 'Toilet_Assets/Toilet_OldFlapper.png',
             stage.width() / 2.02, stage.height() / 1.98, 512, 512, false, false, false, 'Scene1');
