@@ -76,7 +76,10 @@ document.addEventListener('DOMContentLoaded', function() {
 var TankSceneGameState = {
     valveClicked: false,
     handleClicked: false,
-    // Add other states as necessary
+
+    // Rotation control
+    canRotateValve: true,
+    canRotateHandle: true,
 };
 
 
@@ -86,30 +89,34 @@ function objectClicked(konvaImage) {
     console.log(`Object clicked: ${konvaImage.name()}`);
 
     // Perform actions based on the clicked object's name
-    if (konvaImage.name() === 'toiletValve') {
+    if (konvaImage.name() === 'toiletValve' && TankSceneGameState.canRotateValve) {
         rotateObject(konvaImage, -3);
         dynamicText.text("Great!\nNow let's use handle to drain the tank");
         backgroundLayer.draw();
+        TankSceneGameState.valveClicked = true; // Update state, same for other objects
+        TankSceneGameState.canRotateValve = false; // Disable further rotation after the first click
     }
 
-    if (konvaImage.name() === 'toiletHandle') {
+    if (konvaImage.name() === 'toiletHandle' && TankSceneGameState.valveClicked && TankSceneGameState.canRotateHandle) {
         rotateObject(konvaImage, -3);
         dynamicText.text("Great!\nNow let's remove the Toilet Tank Lid\nto check the tank interior");
         backgroundLayer.draw();
+        TankSceneGameState.handleClicked = true;
+        TankSceneGameState.canRotateHandle = false;
     }
 
-    if (konvaImage.name() === 'toiletTankLid') {
+    if (konvaImage.name() === 'toiletTankLid' && TankSceneGameState.handleClicked) {
         dynamicText.text("Great!\nNow let's disconnect the Old Flapper\ninside the tank");
         backgroundLayer.draw();
 
-        SceneManager.transitionToScene('Scene2');
+        SceneManager.transitionToScene('TankScene2');
     }
 
     if (konvaImage.name() === 'toiletOldFlapper2') {
         dynamicText.text("Awesome!\nNow let's install the New Flapper\nIt's at the inventory bar on your left area");
         backgroundLayer.draw();
 
-        SceneManager.transitionToScene('Scene3');
+        SceneManager.transitionToScene('TankScene3');
 
     }
 
@@ -119,7 +126,7 @@ function objectClicked(konvaImage) {
             "Now please click on the Tank Lid to\nclose the lid on the tank");
         backgroundLayer.draw();
 
-        SceneManager.transitionToScene('Scene4');
+        SceneManager.transitionToScene('TankScene4');
 
     }
 
@@ -130,7 +137,7 @@ function objectClicked(konvaImage) {
             "Open the Valve again");
         backgroundLayer.draw();
 
-        SceneManager.transitionToScene('Scene5');
+        SceneManager.transitionToScene('TankScene5');
 
     }
 
@@ -146,7 +153,7 @@ function objectClicked(konvaImage) {
             "\nthe toilet tank maintenance!");
         backgroundLayer.draw();
 
-        SceneManager.transitionToScene('finalScene');
+        SceneManager.transitionToScene('FinalTankScene');
     }
     // Handle
     // other objects as needed
