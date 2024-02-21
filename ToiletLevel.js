@@ -93,14 +93,17 @@ function objectClicked(konvaImage) {
         rotateObject(konvaImage, -3);
         dynamicText.text("Great!\nNow let's use handle to drain the tank");
         backgroundLayer.draw();
-        TankSceneGameState.valveClicked = true; // Update state, same for other objects
-        TankSceneGameState.canRotateValve = false; // Disable further rotation after the first click
+
+        TankSceneGameState.valveClicked = true; // Update state, same for other conditions
+        TankSceneGameState.canRotateValve = false; // Disable further rotation after the first click,
+                                                   // same for other conditions
     }
 
     if (konvaImage.name() === 'toiletHandle' && TankSceneGameState.valveClicked && TankSceneGameState.canRotateHandle) {
         rotateObject(konvaImage, -3);
         dynamicText.text("Great!\nNow let's remove the Toilet Tank Lid\nto check the tank interior");
         backgroundLayer.draw();
+
         TankSceneGameState.handleClicked = true;
         TankSceneGameState.canRotateHandle = false;
     }
@@ -109,7 +112,7 @@ function objectClicked(konvaImage) {
         dynamicText.text("Great!\nNow let's disconnect the Old Flapper\ninside the tank");
         backgroundLayer.draw();
 
-        SceneManager.transitionToScene('TankScene2');
+        SceneManager.transitionToScene('TankScene2'); // Transit to desired scene
     }
 
     if (konvaImage.name() === 'toiletOldFlapper2') {
@@ -137,24 +140,38 @@ function objectClicked(konvaImage) {
             "Open the Valve again");
         backgroundLayer.draw();
 
+        // Update state again to prepare the last Tank scene
+        TankSceneGameState.valveClicked = false;
+        TankSceneGameState.handleClicked = false;
+        TankSceneGameState.canRotateValve = true;
+        TankSceneGameState.canRotateHandle = true;
+
         SceneManager.transitionToScene('TankScene5');
 
     }
 
-    if (konvaImage.name() === 'toiletValve2') {
-        rotateObject(konvaImage, -3);
+    if (konvaImage.name() === 'toiletValve5' && TankSceneGameState.canRotateValve) {
+        rotateObject(konvaImage, 3);
         dynamicText.text("Flush the toilet\nto check it is working");
         backgroundLayer.draw();
+
+        TankSceneGameState.valveClicked = true;
+        TankSceneGameState.canRotateValve = false;
     }
 
-    if (konvaImage.name() === 'toiletHandle2') {
-        rotateObject(konvaImage, -3);
+    if (konvaImage.name() === 'toiletHandle5' && TankSceneGameState.valveClicked && TankSceneGameState.canRotateHandle) {
+        rotateObject(konvaImage, 3);
         dynamicText.text("Congratulations!\nYou've successfully learning" +
             "\nthe toilet tank maintenance!");
         backgroundLayer.draw();
 
+        // Reset state for future play
+        TankSceneGameState.valveClicked = false;
+        TankSceneGameState.handleClicked = false;
+        TankSceneGameState.canRotateValve = true;
+        TankSceneGameState.canRotateHandle = true;
+
         SceneManager.transitionToScene('FinalTankScene');
     }
-    // Handle
-    // other objects as needed
+    // Handle other objects as needed
 }

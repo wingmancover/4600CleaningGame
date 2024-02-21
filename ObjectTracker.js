@@ -6,8 +6,8 @@ var ObjectTracker = (function() {
     var objects = {};
     var globalObjects = []; // Array to keep track of objects visible in all scenes
 
-    function createAndTrackImage(name, src, x, y, width, height, canDrag, canRotate, canScale, scene, onClick, onClickAgain) {
-        return createInteractiveImage(name, src, x, y, width, height, canDrag, canRotate, canScale, scene, onClick, onClickAgain).then(konvaObject => {
+    function createAndTrackImage(name, src, x, y, width, height, canDrag, canRotate, canScale, scene, onClick) {
+        return createInteractiveImage(name, src, x, y, width, height, canDrag, canRotate, canScale, scene, onClick).then(konvaObject => {
             add(name, konvaObject, scene); // Track the newly created object
         });
     }
@@ -121,6 +121,16 @@ document.addEventListener('DOMContentLoaded', async function() {
         await ObjectTracker.createAndTrackImage('inventoryBar2', 'Misc_Sprites/Inventory_bar.png',
             stage.width() / 25, stage.height() / 1.7, 600, 600, false, false, false, 'TankScene2');
 
+        await ObjectTracker.createAndTrackImage('toiletValve2', 'Toilet_Assets/Toilet_Valve.png',
+            stage.width() / 2.05, stage.height() / 1.98, 512, 512, false, false, false, 'TankScene2');
+        setHitArea(ObjectTracker.get('toiletValve2'), 100, 250, 100, 100);
+        ObjectTracker.rotateObjectByName('toiletValve2', -3); // Pre-set the rotation status to maintain consistency
+
+        await ObjectTracker.createAndTrackImage('toiletHandle2', 'Toilet_Assets/Toilet_Handle.png',
+            stage.width() / 2.00, stage.height() / 1.93, 512, 512, false, false, false, 'TankScene2');
+        setHitArea(ObjectTracker.get('toiletHandle2'), 130, 130, 40, 80);
+        ObjectTracker.rotateObjectByName('toiletHandle2', -3); // Pre-set the rotation status to maintain consistency
+
 
         // Tank Scene 3
         await ObjectTracker.createAndTrackImage('toiletBase3', 'Toilet_Assets/Toilet_Base.png',
@@ -132,6 +142,16 @@ document.addEventListener('DOMContentLoaded', async function() {
         await ObjectTracker.createAndTrackImage('toiletNewFlapper', 'Toilet_Assets/Toilet_NewFlapper.png',
             stage.width() / 12.5, stage.height() / 2.75, 512, 512, false, false, false, 'TankScene3', objectClicked);
         setHitArea(ObjectTracker.get('toiletNewFlapper'), 200, 200, 50, 50);
+
+        await ObjectTracker.createAndTrackImage('toiletValve3', 'Toilet_Assets/Toilet_Valve.png',
+            stage.width() / 2.05, stage.height() / 1.98, 512, 512, false, false, false, 'TankScene3');
+        setHitArea(ObjectTracker.get('toiletValve3'), 100, 250, 100, 100);
+        ObjectTracker.rotateObjectByName('toiletValve3', -3); // Pre-set the rotation status to maintain consistency
+
+        await ObjectTracker.createAndTrackImage('toiletHandle3', 'Toilet_Assets/Toilet_Handle.png',
+            stage.width() / 2.00, stage.height() / 1.93, 512, 512, false, false, false, 'TankScene3');
+        setHitArea(ObjectTracker.get('toiletHandle3'), 130, 130, 40, 80);
+        ObjectTracker.rotateObjectByName('toiletHandle3', -3); // Pre-set the rotation status to maintain consistency
 
 
         // Tank Scene 4
@@ -149,14 +169,23 @@ document.addEventListener('DOMContentLoaded', async function() {
             stage.width() / 10.5, stage.height() / 2.25, 512, 512, false, false, false, 'TankScene4', objectClicked);
         setHitArea(ObjectTracker.get('toiletTankLid2'), 100, 90, 150, 110);
 
+        await ObjectTracker.createAndTrackImage('toiletValve4', 'Toilet_Assets/Toilet_Valve.png',
+            stage.width() / 2.05, stage.height() / 1.98, 512, 512, false, false, false, 'TankScene4');
+        setHitArea(ObjectTracker.get('toiletValve4'), 100, 250, 100, 100);
+        ObjectTracker.rotateObjectByName('toiletValve4', -3); // Pre-set the rotation status to maintain consistency
+
+        await ObjectTracker.createAndTrackImage('toiletHandle4', 'Toilet_Assets/Toilet_Handle.png',
+            stage.width() / 2.00, stage.height() / 1.93, 512, 512, false, false, false, 'TankScene4');
+        setHitArea(ObjectTracker.get('toiletHandle4'), 130, 130, 40, 80);
+        ObjectTracker.rotateObjectByName('toiletHandle4', -3); // Pre-set the rotation status to maintain consistency
+
 
         // Tank Scene 5
         await ObjectTracker.createAndTrackImage('toiletBase5', 'Toilet_Assets/Toilet_Base.png',
             stage.width() / 2, stage.height() / 2, 512, 512, false, false, false, 'TankScene5');
 
-        await ObjectTracker.createAndTrackImage('toiletValve2', 'Toilet_Assets/Toilet_Valve.png',
-            stage.width() / 2.05, stage.height() / 1.98, 512, 512, false, false, false, 'TankScene5', objectClicked);
-        setHitArea(ObjectTracker.get('toiletValve2'), 100, 250, 100, 100);
+        await ObjectTracker.createAndTrackImage('inventoryBar5', 'Misc_Sprites/Inventory_bar.png',
+            stage.width() / 25, stage.height() / 1.7, 600, 600, false, false, false, 'TankScene5');
 
         await ObjectTracker.createAndTrackImage('toiletTankExterior2', 'Toilet_Assets/Toilet_TankExterior.png',
             stage.width() / 2.0, stage.height() / 1.96, 512, 512, false, false, false, 'TankScene5');
@@ -166,9 +195,15 @@ document.addEventListener('DOMContentLoaded', async function() {
             stage.width() / 2.0, stage.height() / 1.96, 512, 512, false, false, false, 'TankScene5');
         setHitArea(ObjectTracker.get('toiletTankLid3'), 100, 90, 150, 110);
 
-        await ObjectTracker.createAndTrackImage('toiletHandle2', 'Toilet_Assets/Toilet_Handle.png',
+        await ObjectTracker.createAndTrackImage('toiletValve5', 'Toilet_Assets/Toilet_Valve.png',
+            stage.width() / 2.05, stage.height() / 1.98, 512, 512, false, false, false, 'TankScene5', objectClicked);
+        setHitArea(ObjectTracker.get('toiletValve5'), 100, 250, 100, 100);
+        ObjectTracker.rotateObjectByName('toiletValve5', -3); // Pre-set the rotation status to maintain consistency
+
+        await ObjectTracker.createAndTrackImage('toiletHandle5', 'Toilet_Assets/Toilet_Handle.png',
             stage.width() / 2.00, stage.height() / 1.93, 512, 512, false, false, false, 'TankScene5', objectClicked);
-        setHitArea(ObjectTracker.get('toiletHandle2'), 130, 130, 40, 80);
+        setHitArea(ObjectTracker.get('toiletHandle5'), 130, 130, 40, 80);
+        ObjectTracker.rotateObjectByName('toiletHandle5', -3); // Pre-set the rotation status to maintain consistency
 
 
         // Final Tank Scene
