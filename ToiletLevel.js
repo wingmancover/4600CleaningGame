@@ -72,6 +72,14 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+// Variables for order enforcement of Tank Scene game flow
+var TankSceneGameState = {
+    valveClicked: false,
+    handleClicked: false,
+    // Add other states as necessary
+};
+
+
 // Function for handle the clicked object,
 // updating needed instruction text and transitions to a new scene
 function objectClicked(konvaImage) {
