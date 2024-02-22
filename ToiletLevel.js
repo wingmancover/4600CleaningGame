@@ -130,8 +130,6 @@ function objectClicked(konvaImage) {
     // Perform actions based on the clicked object's name
     if (konvaImage.name() === 'toiletValve' && TankSceneGameState.canRotateValve) {
         rotateObject(konvaImage, -3);
-        playSoundEffect(valveTurning);
-
         dynamicText.text("Great!\nNow let's use handle to drain the tank");
         backgroundLayer.draw();
 
@@ -142,8 +140,6 @@ function objectClicked(konvaImage) {
 
     if (konvaImage.name() === 'toiletHandle' && TankSceneGameState.valveClicked && TankSceneGameState.canRotateHandle) {
         rotateObject(konvaImage, -3);
-        playSoundEffect(toiletFlush);
-
         dynamicText.text("Great!\nNow let's remove the Toilet Tank Lid\nto check the tank interior");
         backgroundLayer.draw();
 
@@ -152,8 +148,6 @@ function objectClicked(konvaImage) {
     }
 
     if (konvaImage.name() === 'toiletTankLid' && TankSceneGameState.handleClicked) {
-        playSoundEffect(tankLidScrape);
-
         dynamicText.text("Great!\nNow let's disconnect the Old Flapper\ninside the tank");
         backgroundLayer.draw();
 
@@ -169,7 +163,6 @@ function objectClicked(konvaImage) {
     }
 
     if (konvaImage.name() === 'toiletNewFlapper') {
-        playSoundEffect(flapperInstall);
 
         dynamicText.text("Awesome! It's installed!\n" +
             "Now please click on the Tank Lid to\nclose the lid on the tank");
@@ -180,7 +173,6 @@ function objectClicked(konvaImage) {
     }
 
     if (konvaImage.name() === 'toiletTankLid2') {
-        playSoundEffect(tankLidScrape);
 
         dynamicText.text("Great Job!\n" +
             "Let's do some final checks:\n" +
@@ -199,8 +191,6 @@ function objectClicked(konvaImage) {
 
     if (konvaImage.name() === 'toiletValve5' && TankSceneGameState.canRotateValve) {
         rotateObject(konvaImage, 3);
-        playSoundEffect(valveTurning);
-
         dynamicText.text("Flush the toilet\nto check it is working");
         backgroundLayer.draw();
 
@@ -210,9 +200,6 @@ function objectClicked(konvaImage) {
 
     if (konvaImage.name() === 'toiletHandle5' && TankSceneGameState.valveClicked && TankSceneGameState.canRotateHandle) {
         rotateObject(konvaImage, 3);
-        playSoundEffect(toiletFlush);
-        playSoundEffect(victoryMusic);
-
         dynamicText.text("Congratulations!\nYou've successfully learning" +
             "\nthe toilet tank maintenance!");
         backgroundLayer.draw();

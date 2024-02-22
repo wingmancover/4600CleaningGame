@@ -65,17 +65,6 @@ var ObjectTracker = (function() {
         }
     }
 
-    // An optional function for global objects
-    // Can use this to set the visibility of global objects to control their interactions
-    function setVisible(name, visible) {
-        const konvaObject = getGlobal(name) || get(name);
-        if (konvaObject) {
-            konvaObject.visible(visible);
-            imageLayer.draw(); // Make sure to redraw the layer to reflect visibility changes
-        }
-    }
-
-
     return {
         add,
         get,
@@ -83,8 +72,7 @@ var ObjectTracker = (function() {
         getByScene,
         createAndTrackImage,
         removeGlobalObject,
-        rotateObjectByName,
-        setVisible
+        rotateObjectByName
     };
 })();
 
