@@ -140,6 +140,14 @@ function objectClicked(konvaImage) {
 
         SceneManager.transitionToScene('finalScene');
     }
+
+    if (konvaImage.name() == 'toSeatSceneButton'){
+        SceneManager.transitionToScene('SeatScene');
+    }
+
+    if (konvaImage.name() == 'toTankSceneButton'){
+        SceneManager.transitionToScene('Scene1');
+    }
     // Handle
     // other objects as needed
 }

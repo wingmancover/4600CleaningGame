@@ -23,6 +23,11 @@ var SceneManager = (function() {
             ObjectTracker.removeGlobalObject('toiletHandle');
         }
 
+        if(sceneName === 'MainMenu'){
+            ObjectTracker.removeGlobalObject('toiletValve');
+            ObjectTracker.removeGlobalObject('toiletHandle');
+        }
+
         // Redraw the layer to display the current scene's objects
         imageLayer.draw();
     }

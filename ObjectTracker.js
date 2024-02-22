@@ -166,8 +166,14 @@ document.addEventListener('DOMContentLoaded', async function() {
         await ObjectTracker.createAndTrackImage('toiletNew', 'Toilet_Assets/Toilet.png',
             stage.width() / 2, stage.height() / 2, 512, 512, false, false, false, 'finalScene');
 
+        //MainMenu
+        await ObjectTracker.createAndTrackImage('toSeatSceneButton', 'Misc_Sprites/tempToSeatButton.jpg',
+        stage.width() / 3.00, stage.height() / 2.6, 216, 50, false, false, false, 'MainMenu', objectClicked);
 
-        SceneManager.transitionToScene('Scene1'); // Moving to the scene
+        await ObjectTracker.createAndTrackImage('toTankSceneButton', 'Misc_Sprites/tempToTankButton.jpg',
+            stage.width() / 3.00, stage.height() / 2, 216, 50, false, false, false, 'MainMenu', objectClicked);
+
+        SceneManager.transitionToScene('MainMenu'); // Moving to the scene
     } catch (error) {
         console.error("Error loading images sequentially:", error);
     }
