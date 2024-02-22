@@ -74,3 +74,51 @@ But still needs to be polished, there are some small issues
   -   A new flapper
   -   A text fillable frame for instructions area
   -   An inventory bar vertically for tools/chemical and other stuffs like flappers
+
+
+
+**Build 3**
+- Tank Scene Refinement
+    - Order Enforcement
+        - Now bugs are fixed that players can follow the instructions and interact objects correctly
+
+    - Revise objectClicked function to enable/disable multiple click checking
+
+    - Refactor code for global objects
+      - can set global objects visibility
+
+    - Enable pre-set rotations to objects
+
+    - Implement sound effects and background music for the Tank Maintenance Scene
+        - SoundManager.js will handle all the sound effects
+        *Background Music needs twerk because modern website settings prevents its auto play
+
+- Main Menu Set Up (There's issues, so we did not contain it into Build 3)
+
+- Seat Cleaning Scene Sprites Assets
+    - “Clean” Layer
+    - “Sponge” Layer
+    - “Spray” Layer
+    - “Brush” Layer
+    - “TCleaner” Layer
+    - Seat Down
+    - Seat Up
+
+- Sound effects Assets
+    - Tank Scene
+        - A smoothing enjoyable BGM(background music)
+        - Mouse click sound
+        - Toilet Flush sound
+        - Valve rotation sound
+        - Toilet Lid scratch sound
+        - install a flapper sound
+        - a winning stage sound effect
+
+    - Seat Cleaning Scene
+        - A smoothing enjoyable BGM(background music)
+        - Mouse click sound
+        - Sponge Squeak
+        - Brush on ceramic (stone)
+        - Spraying
+        - Plastic Bottle squeeze (For: Toilet Cleaner)
+        - a winning stage sound effect
