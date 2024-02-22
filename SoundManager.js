@@ -24,7 +24,7 @@ bgMusic.volume = 0.2; // Set volume
 // For the victory music
 var victoryMusic = new Audio('Sounds/Victory.mp3');
 victoryMusic.loop = false;
-victoryMusic.volume = 0.1;
+victoryMusic.volume = 0.4;
 
 
 // For the Tank Scene sound effects
