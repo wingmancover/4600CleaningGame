@@ -70,6 +70,46 @@ document.addEventListener('DOMContentLoaded', function() {
     backgroundLayer.add(dynamicText);
     backgroundLayer.draw();
 
+    //Eraser
+    // Set up eraser
+    eraser = new Konva.Line({
+        stroke: 'rgba(1,0,0,1)', // Transparent stroke to make it invisible
+        strokeWidth: 20, // Adjust the size of the eraser
+        globalCompositeOperation: 'destination-out', // Make drawing operations erase existing content
+        lineCap: 'round', // Round line endings for smoother erasing
+        lineJoin: 'round' // Round line joints for smoother erasing
+    });
+    backgroundLayer.add(eraser);
+    //imageLayer.draw();
+
+    var isDrawing = false;
+
+    // Event listeners
+    stage.on('mousedown touchstart', function() {
+        isDrawing = true;
+        var pos = stage.getPointerPosition();
+        eraser.points([pos.x, pos.y]);
+        eraser.draw();
+    });
+
+    stage.on('mousemove touchmove', function() {
+        if (!isDrawing) {
+            return;
+        }
+        var pos = stage.getPointerPosition();
+        var newPoints = eraser.points().concat([pos.x, pos.y]);
+        eraser.points(newPoints);
+        eraser.batchDraw();
+    });
+
+    stage.on('mouseup touchend', function() {
+        isDrawing = false;
+    });
+
+    // Enable touch events
+    stage.setPointersPositionsTouch(true);
+
+
     // Our future level design logic can go here
 });
 
