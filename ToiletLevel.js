@@ -30,44 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
     stage.add(imageLayer);
 
 
-    //Eraser
-    // Set up eraser
-    var eraser = new Konva.Line({
-        stroke: 'rgba(1,1,1,1)', // Transparent stroke to make it invisible
-        strokeWidth: 20, // Adjust the size of the eraser
-        globalCompositeOperation: 'destination-out', // Make drawing operations erase existing content
-        lineCap: 'round', // Round line endings for smoother erasing
-        lineJoin: 'round' // Round line joints for smoother erasing
-    });
-    imageLayer.add(eraser);
-
-    var isDrawing = false;
-
-// Event listeners
-    stage.on('mousedown touchstart', function() {
-        isDrawing = true;
-        var pos = stage.getPointerPosition();
-        eraser.points([pos.x, pos.y]);
-        layer.draw();
-    });
-
-    stage.on('mousemove touchmove', function() {
-        if (!isDrawing) {
-            return;
-        }
-        var pos = stage.getPointerPosition();
-        var newPoints = eraser.points().concat([pos.x, pos.y]);
-        eraser.points(newPoints);
-        layer.batchDraw();
-    });
-
-    stage.on('mouseup touchend', function() {
-        isDrawing = false;
-    });
-
-    // Enable touch events
-    stage.setPointersPositionsTouch(true);
-
     // resize to update the background size and redraw
     window.addEventListener('resize', function() {
         // update stage size
