@@ -67,6 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Enable touch events
     stage.setPointersPositionsTouch(true);
 
+
     // resize to update the background size and redraw
     window.addEventListener('resize', function() {
         // update stage size
@@ -223,14 +224,6 @@ function objectClicked(konvaImage) {
         TankSceneGameState.canRotateHandle = true;
 
         SceneManager.transitionToScene('FinalTankScene');
-    }
-
-    if (konvaImage.name() === 'toSeatSceneButton'){
-        SceneManager.transitionToScene('SeatScene1');
-    }
-
-    if (konvaImage.name() === 'toTankSceneButton'){
-        SceneManager.transitionToScene('TankScene1');
     }
     // Handle other objects as needed
 }
