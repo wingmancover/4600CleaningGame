@@ -3,7 +3,7 @@
 // This is for level and scene(canvas) design
 
 
-var stage, backgroundLayer, imageLayer, dynamicText;
+var stage, backgroundLayer, imageLayer, dynamicText, eraser;
 
 document.addEventListener('DOMContentLoaded', function() {
     // initialize stage
@@ -29,17 +29,16 @@ document.addEventListener('DOMContentLoaded', function() {
     imageLayer = new Konva.Layer();
     stage.add(imageLayer);
 
-
     //Eraser
     // Set up eraser
-    var eraser = new Konva.Line({
-        stroke: 'rgba(1,1,1,1)', // Transparent stroke to make it invisible
+    eraser = new Konva.Line({
+        stroke: 'rgba(1,0,0,1)', // Transparent stroke to make it invisible
         strokeWidth: 20, // Adjust the size of the eraser
         globalCompositeOperation: 'destination-out', // Make drawing operations erase existing content
         lineCap: 'round', // Round line endings for smoother erasing
         lineJoin: 'round' // Round line joints for smoother erasing
     });
-    imageLayer.add(eraser);
+    backgroundLayer.add(eraser);
 
     var isDrawing = false;
 
@@ -65,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
         isDrawing = false;
     });
 
-    // Enable touch events
+// Enable touch events
     stage.setPointersPositionsTouch(true);
 
     // resize to update the background size and redraw
@@ -81,6 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // redraw the layers
         backgroundLayer.draw();
         imageLayer.draw();
+        eraser.draw();
     });
 
     // Check mouse position on every click
@@ -120,7 +120,6 @@ var TankSceneGameState = {
     canRotateValve: true,
     canRotateHandle: true,
 };
-
 
 // Function for handle the clicked object,
 // updating needed instruction text and transitions to a new scene
