@@ -229,6 +229,9 @@ document.addEventListener('DOMContentLoaded', async function() {
         await ObjectTracker.createAndTrackImage('toSeatSceneButton', 'Misc_Sprites/tempToSeatButton.jpg',
             stage.width() / 3.00, stage.height() / 2, 512, 100, false, false, false, 'MainMenu', objectClicked);
 
+        //MainMenu
+        await ObjectTracker.createAndTrackImage('toSeatSceneButton', 'Misc_Sprites/tempToSeatButton.jpg',
+        stage.width() / 3.00, stage.height() / 2.6, 216, 50, false, false, false, 'MainMenu', objectClicked);
 
         SceneManager.transitionToScene('MainMenu'); // Moving to the scene
     } catch (error) {
