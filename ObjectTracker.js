@@ -224,10 +224,10 @@ document.addEventListener('DOMContentLoaded', async function() {
 
         //MainMenu Objects
         await ObjectTracker.createAndTrackImage('toTankSceneButton', 'Misc_Sprites/tempToTankButton.jpg',
-            stage.width() / 3.00, stage.height() / 3, 512, 100, false, false, false, 'MainMenu', objectClicked);
+            stage.width() / 2.00, stage.height() / 3, 512, 100, false, false, false, 'MainMenu', objectClicked);
 
         await ObjectTracker.createAndTrackImage('toSeatSceneButton', 'Misc_Sprites/tempToSeatButton.jpg',
-            stage.width() / 3.00, stage.height() / 1.5, 512, 100, false, false, false, 'MainMenu', objectClicked);
+            stage.width() / 2.00, stage.height() / 1.5, 512, 100, false, false, false, 'MainMenu', objectClicked);
 
 
 

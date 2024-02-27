@@ -131,6 +131,20 @@ function objectClicked(konvaImage) {
     console.log(`Object clicked: ${konvaImage.name()}`);
 
     // Perform actions based on the clicked object's name
+    if (konvaImage.name() === 'toTankSceneButton') {
+        playSoundEffect(bgMusic);
+
+        dynamicText.text("Great!\nNow let's use handle to drain the tank");
+        backgroundLayer.draw();
+    }
+
+    if (konvaImage.name() === 'toSeatSceneButton') {
+        playSoundEffect(bgMusic);
+
+        dynamicText.text("Great!\nNow let's use handle to drain the tank");
+        backgroundLayer.draw();
+    }
+
     if (konvaImage.name() === 'toiletValve' && TankSceneGameState.canRotateValve) {
         rotateObject(konvaImage, -3);
         playSoundEffect(valveTurning);
