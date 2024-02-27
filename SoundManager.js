@@ -42,6 +42,6 @@ valveTurning.volume = 0.3;
 
 
 // Play the background music when the game starts
-document.addEventListener('DOMContentLoaded', function() {
-    bgMusic.play().catch(error => console.error("Background music couldn't play:", error));
-});
+// document.addEventListener('DOMContentLoaded', function() {
+//     bgMusic.play().catch(error => console.error("Background music couldn't play:", error));
+// });

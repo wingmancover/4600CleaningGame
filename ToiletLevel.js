@@ -25,6 +25,22 @@ document.addEventListener('DOMContentLoaded', function() {
     backgroundLayer.add(backgroundRect);
     stage.add(backgroundLayer);
 
+    // Load the GIF
+    // var imgObj = new Image();
+    // imgObj.src = 'Background_Anim/Background_Anim.gif';
+    // imgObj.onload = function() {
+    //     var backgroundImage = new Konva.Image({
+    //         x: 0,
+    //         y: 0,
+    //         image: imgObj,
+    //         width: stage.width(),
+    //         height: stage.height(),
+    //     });
+    //     // Add the image to the background layer
+    //     backgroundLayer.add(backgroundImage);
+    //     backgroundLayer.draw(); // Draw the layer to render the image
+    // };
+
     // initialize layer for the image
     imageLayer = new Konva.Layer();
     stage.add(imageLayer);
@@ -57,9 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
     dynamicText = new Konva.Text({
         x: stage.width()/1.6,
         y: stage.height()/10,
-        text: "Click to interact objects!!!\n\n" +
-            "Let's start maintaining our Toilet Tank!" +
-            "\nFirst, let's close the valve to turn off water", // Initial content of the text object
+        text: "", // Initial content of the text object
         fontSize: 25,
         fontFamily: 'Arial',
         fill: 'white'
@@ -131,6 +145,22 @@ function objectClicked(konvaImage) {
     console.log(`Object clicked: ${konvaImage.name()}`);
 
     // Perform actions based on the clicked object's name
+    if (konvaImage.name() === 'toTankSceneButton') {
+        playSoundEffect(bgMusic);
+
+        dynamicText.text("Click to interact objects!!!\n\n" +
+            "Let's start maintaining our Toilet Tank!" +
+            "\nFirst, let's close the valve to turn off water");
+        backgroundLayer.draw();
+    }
+
+    if (konvaImage.name() === 'toSeatSceneButton') {
+        playSoundEffect(bgMusic);
+
+        dynamicText.text("Text Sample: Here is the Seat Cleaning Scene");
+        backgroundLayer.draw();
+    }
+
     if (konvaImage.name() === 'toiletValve' && TankSceneGameState.canRotateValve) {
         rotateObject(konvaImage, -3);
         playSoundEffect(valveTurning);
