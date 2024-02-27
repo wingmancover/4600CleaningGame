@@ -57,9 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
     dynamicText = new Konva.Text({
         x: stage.width()/1.6,
         y: stage.height()/10,
-        text: "Click to interact objects!!!\n\n" +
-            "Let's start maintaining our Toilet Tank!" +
-            "\nFirst, let's close the valve to turn off water", // Initial content of the text object
+        text: "", // Initial content of the text object
         fontSize: 25,
         fontFamily: 'Arial',
         fill: 'white'
@@ -134,14 +132,16 @@ function objectClicked(konvaImage) {
     if (konvaImage.name() === 'toTankSceneButton') {
         playSoundEffect(bgMusic);
 
-        dynamicText.text("Great!\nNow let's use handle to drain the tank");
+        dynamicText.text("Click to interact objects!!!\n\n" +
+            "Let's start maintaining our Toilet Tank!" +
+            "\nFirst, let's close the valve to turn off water");
         backgroundLayer.draw();
     }
 
     if (konvaImage.name() === 'toSeatSceneButton') {
         playSoundEffect(bgMusic);
 
-        dynamicText.text("Great!\nNow let's use handle to drain the tank");
+        dynamicText.text("Text Sample: Here is the Seat Cleaning Scene");
         backgroundLayer.draw();
     }
 
