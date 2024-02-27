@@ -3,7 +3,7 @@
 // This is for level and scene(canvas) design
 
 
-var stage, backgroundLayer, imageLayer, dynamicText;
+var stage, deepLayer, backgroundLayer, imageLayer, dynamicText;
 
 document.addEventListener('DOMContentLoaded', function() {
     // initialize stage
@@ -13,37 +13,33 @@ document.addEventListener('DOMContentLoaded', function() {
         height: window.innerHeight,
     });
 
-    // initialize background layer for canvas
-    backgroundLayer = new Konva.Layer();
-    var backgroundRect = new Konva.Rect({
-        x: 0,
-        y: 0,
-        width: stage.width(),
-        height: stage.height(),
-        fill: '#76B947', // a light green color, just for testing canvas is showing
-    });
-    backgroundLayer.add(backgroundRect);
-    stage.add(backgroundLayer);
+    // initialize deep layer first for canvas, it's for putting background image
+    deepLayer = new Konva.Layer();
+    stage.add(deepLayer);
 
     // Load the GIF
-    // var imgObj = new Image();
-    // imgObj.src = 'Background_Anim/Background_Anim.gif';
-    // imgObj.onload = function() {
-    //     var backgroundImage = new Konva.Image({
-    //         x: 0,
-    //         y: 0,
-    //         image: imgObj,
-    //         width: stage.width(),
-    //         height: stage.height(),
-    //     });
-    //     // Add the image to the background layer
-    //     backgroundLayer.add(backgroundImage);
-    //     backgroundLayer.draw(); // Draw the layer to render the image
-    // };
+    var imgObj = new Image();
+    imgObj.src = 'Background_Anim/Background_Anim.gif';
+    imgObj.onload = function() {
+        var backgroundImage = new Konva.Image({
+            x: 0,
+            y: 0,
+            image: imgObj,
+            width: stage.width(),
+            height: stage.height(),
+        });
+        deepLayer.add(backgroundImage);
+        deepLayer.draw();
+    }
 
-    // initialize layer for the image
+    // initialize image layer for the image
     imageLayer = new Konva.Layer();
     stage.add(imageLayer);
+
+    // initialize background layer for canvas
+    backgroundLayer = new Konva.Layer();
+    stage.add(backgroundLayer);
+
 
 
     // resize to update the background size and redraw
@@ -53,10 +49,13 @@ document.addEventListener('DOMContentLoaded', function() {
         stage.height(window.innerHeight);
 
         // update background size
-        backgroundRect.width(stage.width());
-        backgroundRect.height(stage.height());
+        deepLayer.width(stage.width());
+        deepLayer.height(stage.height());
+        backgroundLayer.width(stage.width());
+        backgroundLayer.height(stage.height());
 
         // redraw the layers
+        deepLayer.draw();
         backgroundLayer.draw();
         imageLayer.draw();
         eraser.draw();
@@ -78,7 +77,6 @@ document.addEventListener('DOMContentLoaded', function() {
         fontFamily: 'Arial',
         fill: 'white'
     });
-
     // Add the text object to backgroundLayer and draw it,
     // so the text will not be affected by imageLayer
     backgroundLayer.add(dynamicText);
@@ -94,7 +92,8 @@ document.addEventListener('DOMContentLoaded', function() {
         lineJoin: 'round' // Round line joints for smoother erasing
     });
     backgroundLayer.add(eraser);
-    //imageLayer.draw();
+    backgroundLayer.draw();
+    eraser.draw();
 
     var isDrawing = false;
 
