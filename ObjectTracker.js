@@ -223,14 +223,14 @@ document.addEventListener('DOMContentLoaded', async function() {
             stage.width() / 2, stage.height() / 2, 512, 512, false, false, false, 'FinalTankScene');
 
         //MainMenu Objects
-        await ObjectTracker.createAndTrackImage('mainMenuBack', 'MainMenu_Assets/Tank_Maintenance_Button_Sprite.png',
+        await ObjectTracker.createAndTrackImage('mainMenuBack', 'MainMenu_Assets/Toil_it_Main_menu.png',
             stage.width() / 2, stage.height() / 2, stage.width(), stage.height(), false, false, false, 'MainMenu');
 
         await ObjectTracker.createAndTrackImage('toTankSceneButton', 'MainMenu_Assets/Tank_Maintenance_Button_Sprite.png',
-            stage.width() / 2.00, stage.height() / 3, 300, 100, false, false, false, 'MainMenu', objectClicked);
+            stage.width() / 2.71, stage.height() / 2.3, 300, 100, false, false, false, 'MainMenu', objectClicked);
 
         await ObjectTracker.createAndTrackImage('toSeatSceneButton', 'MainMenu_Assets/Seat_Cleaning_Button_Sprite.png',
-            stage.width() / 2.00, stage.height() / 1.5, 300, 100, false, false, false, 'MainMenu', objectClicked);
+            stage.width() / 1.55, stage.height() / 2.3, 300, 100, false, false, false, 'MainMenu', objectClicked);
 
 
 
