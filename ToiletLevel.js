@@ -25,6 +25,22 @@ document.addEventListener('DOMContentLoaded', function() {
     backgroundLayer.add(backgroundRect);
     stage.add(backgroundLayer);
 
+    // Load the GIF
+    // var imgObj = new Image();
+    // imgObj.src = 'Background_Anim/Background_Anim.gif';
+    // imgObj.onload = function() {
+    //     var backgroundImage = new Konva.Image({
+    //         x: 0,
+    //         y: 0,
+    //         image: imgObj,
+    //         width: stage.width(),
+    //         height: stage.height(),
+    //     });
+    //     // Add the image to the background layer
+    //     backgroundLayer.add(backgroundImage);
+    //     backgroundLayer.draw(); // Draw the layer to render the image
+    // };
+
     // initialize layer for the image
     imageLayer = new Konva.Layer();
     stage.add(imageLayer);
