@@ -259,7 +259,29 @@ function objectClicked(konvaImage) {
     }
 
     if (konvaImage.name() === 'toSeatSceneButton'){
+        //Load other Quadrants of image
+
+        console.log(ObjectTracker.getWidth('inventoryBar'));
+        // alert(ObjectTracker.getWidth('inventoryBar'));
         SceneManager.transitionToScene('SeatScene1');
+        document.addEventListener('DOMContentLoaded', async function() {
+            try {
+                await ObjectTracker.createAndTrackImage('toiletQB', 'ToiletQuadrants/Sprite-0002.png',
+                    (stage.width()/ 2 )+ (ObjectTracker.get('toiletQA').width()), stage.height() / 2,
+                    125, 125, false, false, false, 'SeatScene1');
+
+                await ObjectTracker.createAndTrackImage('toiletQC', 'ToiletQuadrants/Sprite-0004.png',
+                    stage.width() / 2, stage.height()/2, 512, 512, false, false, false, 'SeatScene1');
+
+                // await ObjectTracker.createAndTrackImage('toiletQD', 'ToiletQuadrants/Sprite-0005.png',
+                //     toiletQA.width, toiletQA.height, 512, 512, false, false, false, 'SeatScene1');
+
+            } catch (error) {
+                console.error("Error loading images sequentially in the seat cleaning scene: ", error);
+            }
+        });
+
+
     }
 
     if (konvaImage.name() === 'toTankSceneButton'){

@@ -8,7 +8,7 @@ var ObjectTracker = (function() {
 
     function createAndTrackImage(name, src, x, y, width, height, canDrag, canRotate, canScale, scene, onClick) {
         return createInteractiveImage(name, src, x, y, width, height, canDrag, canRotate, canScale, scene, onClick).then(konvaObject => {
-            add(name, konvaObject, scene); // Track the newly created object
+            add(name, konvaObject, scene, x, y, width, height); // Track the newly created object
         });
     }
 
@@ -75,6 +75,46 @@ var ObjectTracker = (function() {
         }
     }
 
+    function getWidth(name){
+        const KonvaImage = getGlobal(name) || get(name);
+        if(KonvaImage){
+            return KonvaImage.width(); // return the width of this object
+        } else {
+            console.error('Object not found: ', name);
+            return undefined;
+        }
+    }
+
+    function getHeight(name){
+        const KonvaImage = getGlobal(name) || get(name);
+        if(KonvaImage){
+            return KonvaImage.height(); // return the height of this object
+        } else {
+            console.error('Object not found: ', name);
+            return undefined;
+        }
+    }
+
+    function getX(name){
+        const KonvaImage = getGlobal(name) || get(name);
+        if(KonvaImage){
+            return KonvaImage.x(); // return the x of this object
+        } else {
+            console.error('Object not found: ', name);
+            return undefined;
+        }
+    }
+
+    function getY(name){
+        const KonvaImage = getGlobal(name) || get(name);
+        if(KonvaImage){
+            return KonvaImage.y(); // return the y of this object
+        } else {
+            console.error('Object not found: ', name);
+            return undefined;
+        }
+    }
+
 
     return {
         add,
@@ -84,7 +124,11 @@ var ObjectTracker = (function() {
         createAndTrackImage,
         removeGlobalObject,
         rotateObjectByName,
-        setVisible
+        setVisible,
+        getWidth,
+        getHeight,
+        getX,
+        getY
     };
 })();
 
@@ -222,13 +266,26 @@ document.addEventListener('DOMContentLoaded', async function() {
         await ObjectTracker.createAndTrackImage('toiletNew', 'Toilet_Assets/Toilet.png',
             stage.width() / 2, stage.height() / 2, 512, 512, false, false, false, 'FinalTankScene');
 
+        //Seat Cleaning Scene
+
+        //Toilet Quadrant test
+        await ObjectTracker.createAndTrackImage('toiletQA', 'ToiletQuadrants/Sprite-0001.png',
+            stage.width()/2, stage.height()/2, 125, 125, false, false, false, 'SeatScene1');
+        //other 3 objects within the transition to scene 1
+
+
+        //Seat Scene Tools
+
+        await ObjectTracker.createAndTrackImage('sponge', 'Tools_Sprites/Tool_Sponge.png',
+            stage.width()/ 3, stage.height()/ 1.5, 125, 125, true, true, false, 'SeatScene1');
+
+
         //MainMenu Objects
         await ObjectTracker.createAndTrackImage('toTankSceneButton', 'Misc_Sprites/tempToTankButton.jpg',
             stage.width() / 2.00, stage.height() / 3, 512, 100, false, false, false, 'MainMenu', objectClicked);
 
         await ObjectTracker.createAndTrackImage('toSeatSceneButton', 'Misc_Sprites/tempToSeatButton.jpg',
             stage.width() / 2.00, stage.height() / 1.5, 512, 100, false, false, false, 'MainMenu', objectClicked);
-
 
 
         SceneManager.transitionToScene('MainMenu'); // Moving to the scene
