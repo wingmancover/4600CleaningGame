@@ -267,3 +267,33 @@ function objectClicked(konvaImage) {
     }
     // Handle other objects as needed
 }
+
+// Event Listener for handling keyboard Event
+document.addEventListener('keydown', function(event) {
+    if (event.code === 'Space') {
+        // KEEP THIS: Prevent the default action to stop scrolling when space is pressed
+        event.preventDefault();
+
+        // Example to execute: Specify the object name you want to check,
+        // CHANGE TO ACTUAL OBJECT FOR ACTUAL GAME
+        var objectName = 'toiletValve';
+
+        // Example to execute: Retrieve the opacity of the specified object
+        var objectOpacity = ObjectTracker.getOpacity(objectName);
+
+        // Check if the specific object satisfied your desired opacity
+        // Here is specific to when toiletValve has an opacity of 0.5
+        if (objectOpacity === 0.5) {
+
+            // Example to execute: Perform actions here
+            dynamicText.text(`Example text: Current status: 50% opacity`);
+            backgroundLayer.draw(); // draw the background Layer to show updated dynamic text
+            SceneManager.transitionToScene('MainMenu'); // Moving to your desired scene
+
+            // Other logics if you want to add...
+        } else {
+            console.log(`Space key pressed but ${objectName} does not satisfy the required opacity.`);
+        }
+    }
+    // Add other buttons event if you prefer
+});

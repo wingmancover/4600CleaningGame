@@ -75,6 +75,15 @@ var ObjectTracker = (function() {
         }
     }
 
+    function getOpacity(name) {
+        const konvaObject = getGlobal(name) || get(name);
+        if (konvaObject) {
+            return konvaObject.opacity(); // Return the opacity of the object
+        } else {
+            console.error('Object not found:', name);
+            return null;
+        }
+    }
 
     return {
         add,
@@ -84,7 +93,8 @@ var ObjectTracker = (function() {
         createAndTrackImage,
         removeGlobalObject,
         rotateObjectByName,
-        setVisible
+        setVisible,
+        getOpacity,
     };
 })();
 
