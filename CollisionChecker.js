@@ -21,12 +21,29 @@ function collisionChecker(obj1, obj2) {
         return true;
 }
 
-stage.on('mousemove touchmove', function() {
-    if(collisionChecker(ObjectTracker.get('sponge'),
-        ObjectTracker.get('toiletQA'))){
-        alert("THEY HAVE COLLIDED");
-    }
-});
+// // Event listeners
+// stage.on('mousedown touchstart', function() {
+//     console.log("Start Dragging");
+//     console.log(ObjectTracker.getX('sponge'));
+// });
+//
+// //imageLayer.on('mousemove', function() {
+// window.addEventListener('keydown', function(e){
+//     console.log(ObjectTracker.getX('sponge'));
+//     console.log("it is moving");
+//     if (e.keyCode == 37) {
+//         if (collisionChecker('sponge', 'toiletQA')) {
+//             console.log("THEY HAVE COLLIDED");
+//             ObjectTracker.setOpacity('toiletQA', 0.5);
+//         }
+//     }
+// });
+//
+// stage.on('mouseup touchend', function() {
+//     console.log("Not Dragging Anymore");
+//     console.log(ObjectTracker.getX('sponge'));
+// });
+
 
 //This is a complex collision checker that requires a few changes to the main code. Objects need a new field called: status (This is a binary value that determines
 //whether an object is drawn in the next draw(). This works by checking the object buffer and comparing every item against each other. This currently works

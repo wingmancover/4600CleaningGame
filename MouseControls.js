@@ -18,6 +18,12 @@ function createInteractiveImage(name, src, x, y, width, height, canDrag, canRota
                 name: name,
             });
 
+            if (canDrag){
+                konvaImage.on('dragmove', function(){
+                    populateCollision(name, konvaImage);
+                });
+            }
+
             // right-click to rotate 45 degree
             if (canRotate) {
                 konvaImage.on('contextmenu', function (event) {
@@ -84,4 +90,24 @@ function setHitArea(konvaImage, hitX, hitY, hitWidth, hitHeight) {
         context.closePath();
         context.fillStrokeShape(this);
     });
+}
+
+
+function populateCollision(name, konvaImage){
+    const spongeCollisions = ['toiletQA'];
+    const brushCollisions = ['BL1'];
+
+
+    spongeCollisions.forEach(targetObjectName => {
+        if(collisionChecker('sponge', targetObjectName)) {
+            console.log('Collision detected with', targetObjectName)
+        }
+    })
+
+    brushCollisions.forEach(targetObjectName => {
+        if(collisionChecker('brush', targetObjectName)) {
+            console.log('Collision detected with', targetObjectName)
+        }
+    })
+
 }
