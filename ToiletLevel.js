@@ -208,7 +208,7 @@ function objectClicked(konvaImage) {
         playSoundEffect(victoryMusic);
 
         dynamicText.text("Congratulations!\nYou've successfully learning" +
-            "\nthe toilet tank maintenance!");
+            "\nthe toilet tank maintenance!\n\nPressing 'Escape' to return to Main Menu");
         backgroundLayer.draw();
 
         // Reset state for future play
@@ -222,7 +222,9 @@ function objectClicked(konvaImage) {
 
     if (konvaImage.name() === 'toSeatSceneButton'){
 
-        dynamicText.text('Make the toilet squeaky clean to win! \n Different tools will help you clean different things.')
+        dynamicText.text("Make the toilet squeaky clean to win! \nDifferent tools will help you clean different things." +
+            "\n\nPressing 'Escape' to return to Main Menu" +
+            "\nPressing 'Space' when you have cleaned all the dirts");
 
         SceneManager.transitionToScene('SeatScene1');
         document.addEventListener('DOMContentLoaded', async function() {
@@ -266,7 +268,10 @@ document.addEventListener('keydown', function(event) {
                 // Example to execute: Perform actions here
                 SceneManager.transitionToScene('MainMenu'); // Moving to your desired scene
                 playSoundEffect(victoryMusic);
-                dynamicText.text('Congratulations, you cleaned your toilet!! \n Whenever you are ready to continue just press the escape key.');
+                dynamicText.text(
+                    ''
+                 //   'Congratulations, you cleaned your toilet!! \n Whenever you are ready to continue just press the escape key.'
+                );
                 backgroundLayer.draw(); // draw the background Layer to show updated dynamic text
 
             }
@@ -277,6 +282,7 @@ document.addEventListener('keydown', function(event) {
 
     if (event.code === 'Escape'){
         event.preventDefault();
+        dynamicText.text('');
         SceneManager.transitionToScene('MainMenu');
     }
     // Add other buttons event if you prefer

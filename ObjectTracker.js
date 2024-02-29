@@ -284,6 +284,13 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 
         // Final Tank Scene
+        await ObjectTracker.createAndTrackImage('toiletNew2', 'Toilet_Assets/Toilet.png',
+            stage.width() / 2,
+            stage.height() / 2,
+            512, 512, false, false, false, 'FinalTankScene');
+
+
+        // Seat Scene
         await ObjectTracker.createAndTrackImage('toiletNew', 'Toilet_Assets/Toilet.png',
             stage.width() / 2,
             stage.height() / 2,
