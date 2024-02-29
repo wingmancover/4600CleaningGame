@@ -221,10 +221,9 @@ function objectClicked(konvaImage) {
     }
 
     if (konvaImage.name() === 'toSeatSceneButton'){
-        //Load other Quadrants of image
 
-        //console.log(ObjectTracker.getWidth('inventoryBar'));
-        // alert(ObjectTracker.getWidth('inventoryBar'));
+        dynamicText.text('Make the toilet squeaky clean to win! \n Different tools will help you clean different things.')
+
         SceneManager.transitionToScene('SeatScene1');
         document.addEventListener('DOMContentLoaded', async function() {
             try {
@@ -250,9 +249,9 @@ function objectClicked(konvaImage) {
         SceneManager.transitionToScene('TankScene1');
     }
 
-    if(konvaImage.name() === 'toFinalSeatButton' && brushCleanedFlag && spongeCleanedFlag && sprayCleanedFlag){
-        SceneManager.transitionToScene('SeatSceneFinal');
-    }
+    // if(konvaImage.name() === 'toFinalSeatButton' && brushCleanedFlag && spongeCleanedFlag && sprayCleanedFlag){
+    //     SceneManager.transitionToScene('SeatSceneFinal');
+    // }
 
     // Handle other objects as needed
 }
@@ -265,19 +264,20 @@ document.addEventListener('keydown', function(event) {
             if (spongeCleanedFlag && brushCleanedFlag && sprayCleanedFlag) {
 
                 // Example to execute: Perform actions here
-                dynamicText.text(`Example text: Current status: 50% opacity`);
-                backgroundLayer.draw(); // draw the background Layer to show updated dynamic text
                 SceneManager.transitionToScene('MainMenu'); // Moving to your desired scene
+                playSoundEffect(victoryMusic);
+                dynamicText.text('Congratulations, you cleaned your toilet!! \n Whenever you are ready to continue just press the escape key.');
+                backgroundLayer.draw(); // draw the background Layer to show updated dynamic text
 
             }
-
-
-        // Example to execute: Retrieve the opacity of the specified object
-
-
-            // Other logics if you want to add...
-        } else {
+        else {
             console.log(`Space key pressed but ${objectName} does not satisfy the required opacity.`);
         }
+    }
+
+    if (event.code === 'Escape'){
+        event.preventDefault();
+        SceneManager.transitionToScene('MainMenu');
+    }
     // Add other buttons event if you prefer
 });

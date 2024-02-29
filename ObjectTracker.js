@@ -395,9 +395,9 @@ document.addEventListener('DOMContentLoaded', async function() {
         await ObjectTracker.createAndTrackImage('spray', 'Tools_Sprites/Tool_Spray.png',
             stage.width()/ 3, stage.height()/ 2.5, 75, 75, true, true, false, 'SeatScene1');
 
-        await ObjectTracker.createAndTrackImage('toFinalSeatButton', 'Chemicals_Sprites/Chemical_Baking_Soda_Sprite.png',
-            stage.width()/ 1.5, stage.height()/ 2.5, 250, 100,
-            true, true, false, 'SeatScene1');
+        // await ObjectTracker.createAndTrackImage('toFinalSeatButton', 'Chemicals_Sprites/Chemical_Baking_Soda_Sprite.png',
+        //     stage.width()/ 1.5, stage.height()/ 2.5, 250, 100,
+        //     true, true, false, 'SeatScene1');
 
 
         //MainMenu Objects
