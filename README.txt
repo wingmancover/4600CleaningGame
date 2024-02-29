@@ -122,3 +122,25 @@ But still needs to be polished, there are some small issues
         - Spraying
         - Plastic Bottle squeeze (For: Toilet Cleaner)
         - a winning stage sound effect
+
+
+
+**Final Build**
+- Main Menu implementation
+    - Made a custom background for Main Menu
+
+    - Two buttons for Tank Scene and Seat Cleaning Scene
+
+    - Background music will play once one of the buttons is clicked
+
+- Seat Cleaning Scene Implementation
+    - Use tools to clean the dirts on the toilet
+        - when all the dirts are cleaned, pressing 'Space' to confirm to return to Main Menu
+
+- Press 'Escape' to return to Main Menu at any time
+
+- Background Image replaced for both scenes
+
+- Reorganized texts accordingly
+
+- Fixed bugs
