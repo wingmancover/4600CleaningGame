@@ -2,6 +2,10 @@
 // MouseControls.js
 // This is for setting mouse events and controls to objects and images
 
+var spongeCollision;
+var brushCollisions;
+var sprayCollisions;
+
 function createInteractiveImage(name, src, x, y, width, height, canDrag, canRotate, canScale, scene, onClick) {
     return new Promise((resolve, reject) => {
         var imageObj = new Image();
@@ -17,6 +21,12 @@ function createInteractiveImage(name, src, x, y, width, height, canDrag, canRota
                 draggable: canDrag,
                 name: name,
             });
+
+            if (canDrag){
+                konvaImage.on('dragmove', function(){
+                    populateCollision(name, konvaImage);
+                });
+            }
 
             // right-click to rotate 45 degree
             if (canRotate) {
@@ -84,4 +94,53 @@ function setHitArea(konvaImage, hitX, hitY, hitWidth, hitHeight) {
         context.closePath();
         context.fillStrokeShape(this);
     });
+}
+
+
+function populateCollision(name, konvaImage){
+    spongeCollisions = ['TC1', 'TC4', 'TC5', 'TC8', 'SL1'];
+    brushCollisions = ['BL1', 'BL5', 'BL7'];
+    sprayCollisions = ['TC2', 'TC5', 'SL6', 'SL5', 'SL4', 'SL2'];
+
+
+    spongeCollisions.forEach(targetObjectName => {
+        if(collisionChecker('sponge', targetObjectName)) {
+            //console.log('Collision detected with', targetObjectName);
+            if(ObjectTracker.getOpacity(targetObjectName) - 0.01 > 0.01) {
+                ObjectTracker.setOpacity(targetObjectName,
+                    ObjectTracker.getOpacity(targetObjectName) - 0.01);
+            }
+            else{
+                console.log('Sponge flag raised');
+                spongeCleanedFlag = true;
+            }
+        }
+    })
+
+    brushCollisions.forEach(targetObjectName => {
+        if(collisionChecker('brush', targetObjectName)) {
+            //console.log('Collision detected with', targetObjectName);
+            if(ObjectTracker.getOpacity(targetObjectName) - 0.01 > 0.01)
+                ObjectTracker.setOpacity(targetObjectName,
+                    ObjectTracker.getOpacity(targetObjectName) - 0.01);
+            else{
+                console.log('Spray flag raised');
+                sprayCleanedFlag = true;
+            }
+        }
+    })
+
+    sprayCollisions.forEach(targetObjectName => {
+        if(collisionChecker('spray', targetObjectName)) {
+            //console.log('Collision detected with', targetObjectName);
+            if(ObjectTracker.getOpacity(targetObjectName) - 0.01 > 0.01)
+                ObjectTracker.setOpacity(targetObjectName,
+                    ObjectTracker.getOpacity(targetObjectName) - 0.01);
+            else {
+                console.log('Brush flag raised');
+                brushCleanedFlag = true;
+            }
+        }
+    })
+
 }

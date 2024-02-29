@@ -5,6 +5,8 @@
 
 var stage, deepLayer, backgroundLayer, imageLayer, dynamicText;
 
+var spongeCleanedFlag, sprayCleanedFlag, brushCleanedFlag;
+
 document.addEventListener('DOMContentLoaded', function() {
     // initialize stage
     stage = new Konva.Stage({
@@ -58,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
         deepLayer.draw();
         backgroundLayer.draw();
         imageLayer.draw();
-        eraser.draw();
+        //eraser.draw();
     });
 
     // Check mouse position on every click
@@ -81,46 +83,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // so the text will not be affected by imageLayer
     backgroundLayer.add(dynamicText);
     backgroundLayer.draw();
-
-    //Eraser
-    // Set up eraser
-    eraser = new Konva.Line({
-        stroke: 'rgba(1,0,0,1)', // Transparent stroke to make it invisible
-        strokeWidth: 20, // Adjust the size of the eraser
-        globalCompositeOperation: 'destination-out', // Make drawing operations erase existing content
-        lineCap: 'round', // Round line endings for smoother erasing
-        lineJoin: 'round' // Round line joints for smoother erasing
-    });
-    backgroundLayer.add(eraser);
-    backgroundLayer.draw();
-    eraser.draw();
-
-    var isDrawing = false;
-
-    // Event listeners
-    stage.on('mousedown touchstart', function() {
-        isDrawing = true;
-        var pos = stage.getPointerPosition();
-        eraser.points([pos.x, pos.y]);
-        eraser.draw();
-    });
-
-    stage.on('mousemove touchmove', function() {
-        if (!isDrawing) {
-            return;
-        }
-        var pos = stage.getPointerPosition();
-        var newPoints = eraser.points().concat([pos.x, pos.y]);
-        eraser.points(newPoints);
-        eraser.batchDraw();
-    });
-
-    stage.on('mouseup touchend', function() {
-        isDrawing = false;
-    });
-
-    // Enable touch events
-    stage.setPointersPositionsTouch(true);
 
 
     // Our future level design logic can go here
@@ -246,7 +208,7 @@ function objectClicked(konvaImage) {
         playSoundEffect(victoryMusic);
 
         dynamicText.text("Congratulations!\nYou've successfully learning" +
-            "\nthe toilet tank maintenance!");
+            "\nthe toilet tank maintenance!\n\nPressing 'Escape' to return to Main Menu");
         backgroundLayer.draw();
 
         // Reset state for future play
@@ -259,12 +221,40 @@ function objectClicked(konvaImage) {
     }
 
     if (konvaImage.name() === 'toSeatSceneButton'){
+
+        dynamicText.text("Make the toilet squeaky clean to win! \nDifferent tools will help you clean different things." +
+            "\n\nPressing 'Escape' to return to Main Menu" +
+            "\nPressing 'Space' when you have cleaned all the dirts");
+
         SceneManager.transitionToScene('SeatScene1');
+        document.addEventListener('DOMContentLoaded', async function() {
+            try {
+                await ObjectTracker.createAndTrackImage('toiletQB', 'ToiletQuadrants/Sprite-0002.png',
+                    (stage.width()/ 2 )+ (ObjectTracker.get('toiletQA').width()), stage.height() / 2,
+                    125, 125, false, false, false, 'SeatScene1');
+
+                await ObjectTracker.createAndTrackImage('toiletQC', 'ToiletQuadrants/Sprite-0004.png',
+                    stage.width() / 2, stage.height()/2, 512, 512, false, false, false, 'SeatScene1');
+
+                // await ObjectTracker.createAndTrackImage('toiletQD', 'ToiletQuadrants/Sprite-0005.png',
+                //     toiletQA.width, toiletQA.height, 512, 512, false, false, false, 'SeatScene1');
+
+            } catch (error) {
+                console.error("Error loading images sequentially in the seat cleaning scene: ", error);
+            }
+        });
+
+
     }
 
     if (konvaImage.name() === 'toTankSceneButton'){
         SceneManager.transitionToScene('TankScene1');
     }
+
+    // if(konvaImage.name() === 'toFinalSeatButton' && brushCleanedFlag && spongeCleanedFlag && sprayCleanedFlag){
+    //     SceneManager.transitionToScene('SeatSceneFinal');
+    // }
+
     // Handle other objects as needed
 }
 
@@ -273,27 +263,27 @@ document.addEventListener('keydown', function(event) {
     if (event.code === 'Space') {
         // KEEP THIS: Prevent the default action to stop scrolling when space is pressed
         event.preventDefault();
+            if (spongeCleanedFlag && brushCleanedFlag && sprayCleanedFlag) {
 
-        // Example to execute: Specify the object name you want to check,
-        // CHANGE TO ACTUAL OBJECT FOR ACTUAL GAME
-        var objectName = 'toiletValve';
+                // Example to execute: Perform actions here
+                SceneManager.transitionToScene('MainMenu'); // Moving to your desired scene
+                playSoundEffect(victoryMusic);
+                dynamicText.text(
+                    ''
+                 //   'Congratulations, you cleaned your toilet!! \n Whenever you are ready to continue just press the escape key.'
+                );
+                backgroundLayer.draw(); // draw the background Layer to show updated dynamic text
 
-        // Example to execute: Retrieve the opacity of the specified object
-        var objectOpacity = ObjectTracker.getOpacity(objectName);
-
-        // Check if the specific object satisfied your desired opacity
-        // Here is specific to when toiletValve has an opacity of 0.5
-        if (objectOpacity === 0.5) {
-
-            // Example to execute: Perform actions here
-            dynamicText.text(`Example text: Current status: 50% opacity`);
-            backgroundLayer.draw(); // draw the background Layer to show updated dynamic text
-            SceneManager.transitionToScene('MainMenu'); // Moving to your desired scene
-
-            // Other logics if you want to add...
-        } else {
+            }
+        else {
             console.log(`Space key pressed but ${objectName} does not satisfy the required opacity.`);
         }
+    }
+
+    if (event.code === 'Escape'){
+        event.preventDefault();
+        dynamicText.text('');
+        SceneManager.transitionToScene('MainMenu');
     }
     // Add other buttons event if you prefer
 });
