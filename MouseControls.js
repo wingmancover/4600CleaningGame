@@ -94,8 +94,9 @@ function setHitArea(konvaImage, hitX, hitY, hitWidth, hitHeight) {
 
 
 function populateCollision(name, konvaImage){
-    const spongeCollisions = ['toiletQA'];
-    const brushCollisions = ['BL1'];
+    const spongeCollisions = ['TC1', 'TC4', 'TC5', 'TC8', 'SL1'];
+    const brushCollisions = ['BL1', 'BL5', 'BL7'];
+    const sprayCollisions = ['TC2', 'TC5', 'SL6', 'SL5', 'SL4', 'SL2'];
 
 
     spongeCollisions.forEach(targetObjectName => {
@@ -106,6 +107,12 @@ function populateCollision(name, konvaImage){
 
     brushCollisions.forEach(targetObjectName => {
         if(collisionChecker('brush', targetObjectName)) {
+            console.log('Collision detected with', targetObjectName)
+        }
+    })
+
+    brushCollisions.forEach(targetObjectName => {
+        if(collisionChecker('spray', targetObjectName)) {
             console.log('Collision detected with', targetObjectName)
         }
     })

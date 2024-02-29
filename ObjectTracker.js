@@ -275,74 +275,104 @@ document.addEventListener('DOMContentLoaded', async function() {
 
         // Final Tank Scene
         await ObjectTracker.createAndTrackImage('toiletNew', 'Toilet_Assets/Toilet.png',
-            stage.width() / 2, stage.height() / 2, 512, 512, false, false, false, 'FinalTankScene');
-
-        //Seat Cleaning Scene
-
-        //Toilet Quadrant test
-        await ObjectTracker.createAndTrackImage('toiletQA', 'ToiletQuadrants/Sprite-0001.png',
-            stage.width()/2, stage.height()/2, 512, 512, false, false, false, 'SeatScene1');
-
-        await ObjectTracker.createAndTrackImage('toiletQB', 'ToiletQuadrants/Sprite-0002.png',
-            (stage.width()/ 2 )+ (ObjectTracker.get('toiletQA').width()), stage.height() / 2,
+            stage.width() / 2,
+            stage.height() / 2,
             512, 512, false, false, false, 'SeatScene1');
-        //other 3 objects within the transition to scene 1
-
-        //Dirt Layers
-        // 1 2 3
-        // 4 5 6
-        // 7 8 9
-        // var toiletBaseX = ObjectTracker.getX('toiletBaseScene');
-        // var toiletBaseY = ObjectTracker.getY('toiletBaseScene');
-        // console.log(toiletBaseX);
-        // console.log(toiletBaseY);
-        // await ObjectTracker.createAndTrackImage('toiletBaseScene', 'Toilet_Assets/Toilet_Base.png',
-        //     stage.width() / 2, stage.height() / 2, 512, 512, false, false, false, 'SeatScene1');
 
         //Brush Layer  (B.L)
         //1 - 3
         await ObjectTracker.createAndTrackImage('BL1', 'Toilet_brush_Dirt3x3/1.png',
-            stage.width()/2,
-            stage.height()/2,
-            170, 170 , false, false, false, 'SeatScene1');
+            stage.width()/2 - 120,
+            stage.height()/2 - 100,
+            170, 170, false, false, false, 'SeatScene1');
 
         // 4 - 6
 
         await ObjectTracker.createAndTrackImage('BL5', 'Toilet_brush_Dirt3x3/5.png',
-            (stage.width()/ 2 ) + 1*(ObjectTracker.get('BL1').width()),
-            stage.height()/2 + (ObjectTracker.get('BL1').height()),
+            stage.width()/2 - 65,
+            stage.height()/2 - 40,
             170, 170, false, false, false, 'SeatScene1');
 
         // 7 - 9
 
         await ObjectTracker.createAndTrackImage('BL7', 'Toilet_brush_Dirt3x3/7.png',
-            (stage.width()/ 2 )+ 1*(ObjectTracker.get('BL1').width()),
-            stage.height()/2 + 2*(ObjectTracker.get('BL1').height()),
+            stage.width()/2 - 65,
+            stage.height()/2 - 40,
             170, 170, false, false, false, 'SeatScene1');
 
 
         //Toilet Cleaner (T.C)
         //1 - 3
-        // await ObjectTracker.createAndTrackImage('TC1', 'Toilet_Cleaner_Dirt_Split3x3/1.png',
-        //     stage.width()/2,
-        //     stage.height()/2,
-        //     170, 170, false, false, false, 'SeatScene1');
-        //
-        // await ObjectTracker.createAndTrackImage('TC2', 'Toilet_Cleaner_Dirt_Split3x3/2.png',
-        //     (stage.width()/ 2 )+ (ObjectTracker.get('TC1').width()),
-        //     stage.height()/2,
-        //     170, 170, false, false, false, 'SeatScene1');
-        //
-        // await ObjectTracker.createAndTrackImage('TC3', 'Toilet_Cleaner_Dirt_Split3x3/3.png',
-        //     (stage.width()/ 2 )+ 2 * (ObjectTracker.get('TC1').width()),
-        //     stage.height()/2,
-        //     170, 170, false, false, false, 'SeatScene1');
-        //
-        // // 4 - 6
-        // await ObjectTracker.createAndTrackImage('TC4', 'Toilet_Cleaner_Dirt_Split3x3/4.png',
-        //     (stage.width()/ 2 ),
-        //     (stage.height()/2) + (ObjectTracker.get('TC1').height()),
-        //     170, 170, false, false, false, 'SeatScene1');
+        await ObjectTracker.createAndTrackImage('TC1', 'Toilet_Cleaner_Dirt_Split3x3/1.png',
+            stage.width()/2 - 80,
+            stage.height()/2 - 60,
+            120, 120, false, false, false, 'SeatScene1');
+
+        //Sponge Layer (S.L.)
+
+        await ObjectTracker.createAndTrackImage('TC4', 'Toilet_Sponge_Dirt3x3/4.png',
+            stage.width()/2 - 80,
+            stage.height()/2 - 200, //who knows
+            170, 170, false, false, false, 'SeatScene1');
+
+        await ObjectTracker.createAndTrackImage('TC4', 'Toilet_Sponge_Dirt3x3/4.png',
+            stage.width()/2 - 15,
+            stage.height()/2 + 40,
+            170, 170, false, false, false, 'SeatScene1');
+
+        await ObjectTracker.createAndTrackImage('TC5', 'Toilet_Sponge_Dirt3x3/5.png',
+            stage.width()/2 + 45,
+            stage.height()/2 + 20,
+            170, 170, false, false, false, 'SeatScene1');
+
+        await ObjectTracker.createAndTrackImage('TC8', 'Toilet_Sponge_Dirt3x3/8.png',
+            stage.width()/2 - 80,
+            stage.height()/2 - 60,
+            170, 170, false, false, false, 'SeatScene1');
+
+        //Spray Layer (SL)
+
+        await ObjectTracker.createAndTrackImage('SL1', 'Toilet_Spray_Dirt3x3/1.png',
+            stage.width()/2 - 5,
+            stage.height()/2 - 160,
+            170, 170, false, false, false, 'SeatScene1');
+
+        await ObjectTracker.createAndTrackImage('SL2', 'Toilet_Spray_Dirt3x3/2.png',
+            stage.width()/2 - 5,
+            stage.height()/2 + 40,
+            170, 170, false, false, false, 'SeatScene1');
+
+        await ObjectTracker.createAndTrackImage('SL4', 'Toilet_Spray_Dirt3x3/4.png',
+            stage.width()/2 - 20,
+            stage.height()/2 - 80,
+            170, 170, false, false, false, 'SeatScene1');
+
+        await ObjectTracker.createAndTrackImage('SL4', 'Toilet_Spray_Dirt3x3/4.png',
+            stage.width()/2 - 20,
+            stage.height()/2 - 80,
+            170, 170, false, false, false, 'SeatScene1');
+
+        await ObjectTracker.createAndTrackImage('SL5', 'Toilet_Spray_Dirt3x3/5.png',
+            stage.width()/2 - 20,
+            stage.height()/2 - 80,
+            170, 170, false, false, false, 'SeatScene1');
+
+        await ObjectTracker.createAndTrackImage('SL6', 'Toilet_Spray_Dirt3x3/6.png',
+            stage.width()/2 + 230,
+            stage.height()/2 + 30,
+            170, 170, false, false, false, 'SeatScene1');
+
+
+        await ObjectTracker.createAndTrackImage('TC2', 'Toilet_Cleaner_Dirt_Split3x3/2.png',
+            stage.width()/ 2 - 120,
+            stage.height()/2 - 350,
+            170, 170, false, false, false, 'SeatScene1');
+
+        // 4 - 6
+        await ObjectTracker.createAndTrackImage('TC5', 'Toilet_Cleaner_Dirt_Split3x3/5.png',
+            (stage.width()/ 2 ) + 90,
+            (stage.height()/2) + 15,
+            50, 50, false, false, false, 'SeatScene1');
         //
         // await ObjectTracker.createAndTrackImage('TC5', 'Toilet_Cleaner_Dirt_Split3x3/5.png',
         //     (stage.width()/ 2 )+ 1*(ObjectTracker.get('TC1').width()),
@@ -378,6 +408,8 @@ document.addEventListener('DOMContentLoaded', async function() {
         await ObjectTracker.createAndTrackImage('brush', 'Tools_Sprites/Tool_ScrubBrush.png',
             stage.width()/3, stage.height()/ 2, 125, 125, true, true, false, 'SeatScene1');
 
+        await ObjectTracker.createAndTrackImage('spray', 'Tools_Sprites/Tool_Sponge.png',
+            stage.width()/ 3, stage.height()/ 1.5, 125, 125, true, true, false, 'SeatScene1');
 
         //MainMenu Objects
         await ObjectTracker.createAndTrackImage('mainMenuBack', 'MainMenu_Assets/Toil_it_Main_menu.png',
