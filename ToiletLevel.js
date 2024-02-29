@@ -5,6 +5,8 @@
 
 var stage, deepLayer, backgroundLayer, imageLayer, dynamicText;
 
+var spongeCleanedFlag, sprayCleanedFlag, brushCleanedFlag;
+
 document.addEventListener('DOMContentLoaded', function() {
     // initialize stage
     stage = new Konva.Stage({
@@ -247,5 +249,35 @@ function objectClicked(konvaImage) {
     if (konvaImage.name() === 'toTankSceneButton'){
         SceneManager.transitionToScene('TankScene1');
     }
+
+    if(konvaImage.name() === 'toFinalSeatButton' && brushCleanedFlag && spongeCleanedFlag && sprayCleanedFlag){
+        SceneManager.transitionToScene('SeatSceneFinal');
+    }
+
     // Handle other objects as needed
 }
+
+// Event Listener for handling keyboard Event
+document.addEventListener('keydown', function(event) {
+    if (event.code === 'Space') {
+        // KEEP THIS: Prevent the default action to stop scrolling when space is pressed
+        event.preventDefault();
+            if (spongeCleanedFlag && brushCleanedFlag && sprayCleanedFlag) {
+
+                // Example to execute: Perform actions here
+                dynamicText.text(`Example text: Current status: 50% opacity`);
+                backgroundLayer.draw(); // draw the background Layer to show updated dynamic text
+                SceneManager.transitionToScene('MainMenu'); // Moving to your desired scene
+
+            }
+
+
+        // Example to execute: Retrieve the opacity of the specified object
+
+
+            // Other logics if you want to add...
+        } else {
+            console.log(`Space key pressed but ${objectName} does not satisfy the required opacity.`);
+        }
+    // Add other buttons event if you prefer
+});

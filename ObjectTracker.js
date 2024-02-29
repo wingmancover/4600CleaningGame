@@ -75,6 +75,7 @@ var ObjectTracker = (function() {
         }
     }
 
+
     function setOpacity(name, value){
         const konvaObject = getGlobal(name) || get(name);
         if (konvaObject) {
@@ -125,7 +126,15 @@ var ObjectTracker = (function() {
         }
     }
 
-
+    function getOpacity(name) {
+        const konvaObject = getGlobal(name) || get(name);
+        if (konvaObject) {
+            return konvaObject.opacity(); // Return the opacity of the object
+        } else {
+            console.error('Object not found:', name);
+            return null;
+        }
+    }
     return {
         add,
         get,
@@ -139,7 +148,8 @@ var ObjectTracker = (function() {
         getWidth,
         getHeight,
         getX,
-        getY
+        getY,
+        getOpacity,
     };
 })();
 
@@ -373,43 +383,22 @@ document.addEventListener('DOMContentLoaded', async function() {
             (stage.width()/ 2 ) + 90,
             (stage.height()/2) + 15,
             50, 50, false, false, false, 'SeatScene1');
-        //
-        // await ObjectTracker.createAndTrackImage('TC5', 'Toilet_Cleaner_Dirt_Split3x3/5.png',
-        //     (stage.width()/ 2 )+ 1*(ObjectTracker.get('TC1').width()),
-        //     stage.height()/2 + (ObjectTracker.get('TC1').height()),
-        //     170, 170, false, false, false, 'SeatScene1');
-        //
-        // await ObjectTracker.createAndTrackImage('TC6', 'Toilet_Cleaner_Dirt_Split3x3/6.png',
-        //     (stage.width()/ 2 )+ 2*(ObjectTracker.get('TC1').width()),
-        //     stage.height()/2 + (ObjectTracker.get('TC1').height()),
-        //     170, 170, false, false, false, 'SeatScene1');
-        //
-        // // 7 - 9
-        // await ObjectTracker.createAndTrackImage('TC7', 'Toilet_Cleaner_Dirt_Split3x3/7.png',
-        //     (stage.width()/ 2 ),
-        //     stage.height()/2 + 2*(ObjectTracker.get('TC1').height()),
-        //     170, 170, false, false, false, 'SeatScene1');
-        //
-        // await ObjectTracker.createAndTrackImage('TC8', 'Toilet_Cleaner_Dirt_Split3x3/8.png',
-        //     (stage.width()/ 2 )+ 1*(ObjectTracker.get('TC1').width()),
-        //     stage.height()/2 + 2*(ObjectTracker.get('TC1').height()),
-        //     170, 170, false, false, false, 'SeatScene1');
-        //
-        // await ObjectTracker.createAndTrackImage('TC9', 'Toilet_Cleaner_Dirt_Split3x3/9.png',
-        //     (stage.width()/ 2 )+ 2*(ObjectTracker.get('TC1').width()),
-        //     stage.height()/2 + 2*(ObjectTracker.get('TC1').height()),
-        //     170, 170, false, false, false, 'SeatScene1');
 
         //Seat Scene Tools
 
         await ObjectTracker.createAndTrackImage('sponge', 'Tools_Sprites/Tool_Sponge.png',
-            stage.width()/ 3, stage.height()/ 1.5, 125, 125, true, true, false, 'SeatScene1');
+            stage.width()/ 3, stage.height()/ 1.5, 75, 75, true, true, false, 'SeatScene1');
 
         await ObjectTracker.createAndTrackImage('brush', 'Tools_Sprites/Tool_ScrubBrush.png',
-            stage.width()/3, stage.height()/ 2, 125, 125, true, true, false, 'SeatScene1');
+            stage.width()/3, stage.height()/ 2, 75, 75, true, true, false, 'SeatScene1');
 
-        await ObjectTracker.createAndTrackImage('spray', 'Tools_Sprites/Tool_Sponge.png',
-            stage.width()/ 3, stage.height()/ 1.5, 125, 125, true, true, false, 'SeatScene1');
+        await ObjectTracker.createAndTrackImage('spray', 'Tools_Sprites/Tool_Spray.png',
+            stage.width()/ 3, stage.height()/ 2.5, 75, 75, true, true, false, 'SeatScene1');
+
+        await ObjectTracker.createAndTrackImage('toFinalSeatButton', 'Chemicals_Sprites/Chemical_Baking_Soda_Sprite.png',
+            stage.width()/ 1.5, stage.height()/ 2.5, 250, 100,
+            true, true, false, 'SeatScene1');
+
 
         //MainMenu Objects
         await ObjectTracker.createAndTrackImage('mainMenuBack', 'MainMenu_Assets/Toil_it_Main_menu.png',
